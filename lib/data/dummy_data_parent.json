@@ -6,7 +6,7 @@
                 "profilePicURL": "https://pic/id/2912y812",
                 "phoneNo": "01111982733",
                 "gender": "male",
-                "birthDate": "1969-07-20 20:18:04Z",
+                "birthDate": "1969-07-20",
                 "email": "std@gmail.com",
                 "loginCredential": {
                     "username": "user-name",
@@ -19,7 +19,7 @@
                     "universityName": "UTM",
                     "field": "Software Engineering",
                     "degreeLevel": "Bachelor",
-                    "startDate": "1969-07-20 20:18:04Z",
+                    "startDate": "1969-07-20",
                     "targetedCGPA": 4.00,
                     "calculatedCGPA": 3.78,
                     "semesters": [{

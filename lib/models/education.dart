@@ -20,11 +20,15 @@ class Education {
 
   Education.fromJson(Map<String, dynamic> json)
       : this(
-            semesters: json['semesters'],
+            semesters: json['semesters'] != null
+                ? (json['semesters'] as List)
+                    .map((semester) => Semester.fromJson(semester))
+                    .toList()
+                : [],
             universityName: json['universityName'],
             field: json['field'],
             degreeLevel: json['degreeLevel'],
-            startDate: json['startDate'],
+            startDate: DateTime.parse(json['startDate']),
             targetedCGPA: json['targetedCGPA'],
             calculatedCGPA: json['calculatedCGPA']);
 
