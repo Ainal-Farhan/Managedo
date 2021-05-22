@@ -29,8 +29,8 @@ class Education {
             field: json['field'],
             degreeLevel: json['degreeLevel'],
             startDate: DateTime.parse(json['startDate']),
-            targetedCGPA: json['targetedCGPA'],
-            calculatedCGPA: json['calculatedCGPA']);
+            targetedCGPA: json['targetedCGPA'].toDouble(),
+            calculatedCGPA: json['calculatedCGPA'].toDouble());
 
   Education.copy(Education from)
       : this(

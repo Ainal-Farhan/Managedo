@@ -1,39 +1,18 @@
 import 'package:flutter/material.dart';
 
+import './app/dependencies.dart' as dependency;
+import './app/router.dart' as router;
+
 void main() {
-  runApp(MyApp());
-}
+  dependency.init();
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Managedo Main Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Container(),
-    );
-  }
+  runApp(
+    MaterialApp(
+      title: 'Managedo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
+      initialRoute: router.educationRoute,
+      onGenerateRoute: router.createRoute,
+    ),
+  );
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EducationInfoScreen extends StatefulWidget {
-  @override
-  _EducationInfoScreen createState() => _EducationInfoScreen();
-}
+import '../view.dart';
+import './EducationInfo_viewmodel.dart';
+import '../../app/router.dart' as router;
 
-class _EducationInfoScreen extends State<EducationInfoScreen> {
+class EducationInfoScreen extends StatelessWidget {
+  static Route<dynamic> route() =>
+      MaterialPageRoute(builder: (_) => EducationInfoScreen());
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -14,10 +16,38 @@ class _EducationInfoScreen extends State<EducationInfoScreen> {
         child: Scaffold(
           appBar: AppBar(
             leading: Container(),
-            title: Text('Example Screen'),
+            title: Text('Education Information'),
             centerTitle: true,
           ),
-          body: Container(),
+          body: View<EducationInfoViewmodel>(
+            initViewmodel: (viewmodel) => viewmodel.getStudentList(),
+            builder: (context, viewmodel, _) {
+              final students = viewmodel.students;
+
+              return ListView.separated(
+                itemCount: students.length,
+                separatorBuilder: (context, index) => Divider(
+                  color: Colors.blueGrey,
+                ),
+                itemBuilder: (context, index) {
+                  final student = students[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(student.profilePicURL),
+                    ),
+                    title: Text(student.name),
+                    subtitle: Text(
+                        'semester length:  ${student.educations[0].semesters.length}'),
+                    onTap: () {
+                      viewmodel.selectStudent(index);
+                      Navigator.pushReplacementNamed(
+                          context, router.educationRoute);
+                    },
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
