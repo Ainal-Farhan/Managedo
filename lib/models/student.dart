@@ -1,3 +1,5 @@
+import 'package:managedo_mobile_app/models/login_credential.dart';
+
 import './user.dart';
 import './education.dart';
 import './parent.dart';
@@ -29,15 +31,25 @@ class Student extends User {
   Student.fromJson(Map<String, dynamic> json)
       : this(
             matricNumber: json['matricNumber'],
-            educations: json['educations'],
-            parents: json['parents'],
+            educations: json['educations'] != null
+                ? (json['educations'] as List)
+                    .map((education) => Education.fromJson(education))
+                    .toList()
+                : [],
+            parents: json['parents'] != null
+                ? (json['parents'] as List)
+                    .map((parent) => Parent.fromJson(parent))
+                    .toList()
+                : [],
             name: json['name'],
             profilePicURL: json['profilePicURL'],
             phoneNo: json['phoneNo'],
             gender: json['gender'],
             birthDate: json['birthDate'],
             email: json['email'],
-            loginCredential: json['loginCredential']);
+            loginCredential: json['loginCredential'] != null
+                ? LoginCredential.fromJson(json['loginCredential'])
+                : null);
   Student.copy(Student from)
       : this(
             matricNumber: from.matricNumber,

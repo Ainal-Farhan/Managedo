@@ -26,8 +26,11 @@ class Semester {
           realGPA: json['realGPA'],
           totalCredit: json['totalCredit'],
           semesterStatus: json['semesterStatus'],
-          courses:
-              json['courses'].map((course) => Course.fromJson(course)).toList(),
+          courses: json['courses'] != null
+              ? (json['courses'] as List)
+                  .map((course) => Course.fromJson(course))
+                  .toList()
+              : [],
         );
 
   Semester.copy(Semester from)

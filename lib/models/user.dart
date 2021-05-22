@@ -26,9 +26,11 @@ class User {
             profilePicURL: json['profilePicURL'],
             phoneNo: json['phoneNo'],
             gender: json['gender'],
-            birthDate: json['birthDate'],
+            birthDate: DateTime.parse(json['birthDate']),
             email: json['email'],
-            loginCredential: json['loginCredential']);
+            loginCredential: json['loginCredential'] != null
+                ? LoginCredential.fromJson(json['loginCredential'])
+                : null);
 
   User.copy(User from)
       : this(
