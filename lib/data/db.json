@@ -1,0 +1,317 @@
+{
+    "parents": [{
+        "studentRelations": [{
+            "student": {
+                "user": {
+                    "name": "student name",
+                    "profilePicURL": "https://pic/id/2912y812",
+                    "phoneNo": "01111982733",
+                    "gender": "male",
+                    "birthDate": "1969-07-20",
+                    "email": "std@gmail.com",
+                    "loginCredential": {
+                        "username": "user-name",
+                        "password": "user@!23",
+                        "userType": "student"
+                    }
+                },
+                "matricNumber": "A18CS0115",
+                "educations": [{
+                        "universityName": "UTM",
+                        "field": "Software Engineering",
+                        "degreeLevel": "Bachelor",
+                        "startDate": "1969-07-20",
+                        "targetedCGPA": 4.00,
+                        "calculatedCGPA": 3.78,
+                        "semesters": [{
+                            "semesterNo": 1,
+                            "durationInWeek": 8,
+                            "targetedGPA": 4.00,
+                            "realGPA": 4.00,
+                            "totalCredit": 15,
+                            "semesterStatus": "completed",
+                            "courses": [{
+                                "courseCode": "SCSJ4401",
+                                "courseName": "Mobile Application Programming",
+                                "section": 2,
+                                "credit": 4,
+                                "targetedGrade": "A",
+                                "totalAssessmentPercentage": 78.4,
+                                "realGrade": "B+"
+                            }, {
+                                "courseCode": "SCSJ4302",
+                                "courseName": "Object-Oriented Programming",
+                                "section": 1,
+                                "credit": 4,
+                                "targetedGrade": "A+",
+                                "totalAssessmentPercentage": 80.4,
+                                "realGrade": "A"
+                            }]
+                        }, {
+                            "semesterNo": 2,
+                            "durationInWeek": 8,
+                            "targetedGPA": 4.00,
+                            "realGPA": 4.00,
+                            "totalCredit": 15,
+                            "semesterStatus": "completed",
+                            "courses": [{
+                                "courseCode": "SCSJ4401",
+                                "courseName": "Mobile Application Programming",
+                                "section": 2,
+                                "credit": 4,
+                                "targetedGrade": "A",
+                                "totalAssessmentPercentage": 78.4,
+                                "realGrade": "B+"
+                            }, {
+                                "courseCode": "SCSJ4302",
+                                "courseName": "Object-Oriented Programming",
+                                "section": 1,
+                                "credit": 4,
+                                "targetedGrade": "A+",
+                                "totalAssessmentPercentage": 80.4,
+                                "realGrade": "A"
+                            }]
+                        }]
+                    },
+                    {
+                        "universityName": "UiTM",
+                        "field": "Software Engineering",
+                        "degreeLevel": "Master",
+                        "startDate": "1969-07-20 20:18:04Z",
+                        "targetedCGPA": 4.00,
+                        "calculatedCGPA": 3.78,
+                        "semesters": [{
+                            "semesterNo": 1,
+                            "durationInWeek": 8,
+                            "targetedGPA": 4.00,
+                            "realGPA": 4.00,
+                            "totalCredit": 15,
+                            "semesterStatus": "completed",
+                            "courses": [{
+                                "courseCode": "SCSJ4401",
+                                "courseName": "Mobile Application Programming",
+                                "section": 2,
+                                "credit": 4,
+                                "targetedGrade": "A",
+                                "totalAssessmentPercentage": 78.4,
+                                "realGrade": "B+"
+                            }, {
+                                "courseCode": "SCSJ4302",
+                                "courseName": "Object-Oriented Programming",
+                                "section": 1,
+                                "credit": 4,
+                                "targetedGrade": "A+",
+                                "totalAssessmentPercentage": 80.4,
+                                "realGrade": "A"
+                            }]
+                        }, {
+                            "semesterNo": 2,
+                            "durationInWeek": 8,
+                            "targetedGPA": 4.00,
+                            "realGPA": 4.00,
+                            "totalCredit": 15,
+                            "semesterStatus": "completed",
+                            "courses": [{
+                                "courseCode": "SCSJ4401",
+                                "courseName": "Mobile Application Programming",
+                                "section": 2,
+                                "credit": 4,
+                                "targetedGrade": "A",
+                                "totalAssessmentPercentage": 78.4,
+                                "realGrade": "B+"
+                            }, {
+                                "courseCode": "SCSJ4302",
+                                "courseName": "Object-Oriented Programming",
+                                "section": 1,
+                                "credit": 4,
+                                "targetedGrade": "A+",
+                                "totalAssessmentPercentage": 80.4,
+                                "realGrade": "A"
+                            }]
+                        }]
+                    }
+                ]
+            },
+            "relation": "Father"
+        }],
+        "user": {
+            "name": "parent name",
+            "profilePicURL": "https://pic/id/2912y812",
+            "phoneNo": "01111982733",
+            "gender": "male",
+            "birthDate": "1969-07-20 20:18:04Z",
+            "email": "std@gmail.com",
+            "loginCredential": {
+                "username": "user-name",
+                "password": "user@!23",
+                "userType": "student"
+            }
+        }
+    }],
+    "students": [{
+        "user": {
+            "name": "student name",
+            "profilePicURL": "https://pic/id/2912y812",
+            "phoneNo": "01111982733",
+            "gender": "male",
+            "birthDate": "1969-07-20 20:18:04Z",
+            "email": "std@gmail.com",
+            "loginCredential": {
+                "username": "user-name",
+                "password": "user@!23",
+                "userType": "student"
+            }
+        },
+        "matricNumber": "A18CS0115",
+        "educations": [{
+                "universityName": "UTM",
+                "field": "Software Engineering",
+                "degreeLevel": "Bachelor",
+                "startDate": "1969-07-20 20:18:04Z",
+                "targetedCGPA": 4.00,
+                "calculatedCGPA": 3.78,
+                "semesters": [{
+                    "semesterNo": 1,
+                    "durationInWeek": 8,
+                    "targetedGPA": 4.00,
+                    "realGPA": 4.00,
+                    "totalCredit": 15,
+                    "semesterStatus": "completed",
+                    "courses": [{
+                        "courseCode": "SCSJ4401",
+                        "courseName": "Mobile Application Programming",
+                        "section": 2,
+                        "credit": 4,
+                        "targetedGrade": "A",
+                        "totalAssessmentPercentage": 78.4,
+                        "realGrade": "B+"
+                    }, {
+                        "courseCode": "SCSJ4302",
+                        "courseName": "Object-Oriented Programming",
+                        "section": 1,
+                        "credit": 4,
+                        "targetedGrade": "A+",
+                        "totalAssessmentPercentage": 80.4,
+                        "realGrade": "A"
+                    }]
+                }, {
+                    "semesterNo": 2,
+                    "durationInWeek": 8,
+                    "targetedGPA": 4.00,
+                    "realGPA": 4.00,
+                    "totalCredit": 15,
+                    "semesterStatus": "completed",
+                    "courses": [{
+                        "courseCode": "SCSJ4401",
+                        "courseName": "Mobile Application Programming",
+                        "section": 2,
+                        "credit": 4,
+                        "targetedGrade": "A",
+                        "totalAssessmentPercentage": 78.4,
+                        "realGrade": "B+"
+                    }, {
+                        "courseCode": "SCSJ4302",
+                        "courseName": "Object-Oriented Programming",
+                        "section": 1,
+                        "credit": 4,
+                        "targetedGrade": "A+",
+                        "totalAssessmentPercentage": 80.4,
+                        "realGrade": "A"
+                    }]
+                }]
+            },
+            {
+                "universityName": "UiTM",
+                "field": "Software Engineering",
+                "degreeLevel": "Master",
+                "startDate": "1969-07-20 20:18:04Z",
+                "targetedCGPA": 4.00,
+                "calculatedCGPA": 3.78,
+                "semesters": [{
+                    "semesterNo": 1,
+                    "durationInWeek": 8,
+                    "targetedGPA": 4.00,
+                    "realGPA": 4.00,
+                    "totalCredit": 15,
+                    "semesterStatus": "completed",
+                    "courses": [{
+                        "courseCode": "SCSJ4401",
+                        "courseName": "Mobile Application Programming",
+                        "section": 2,
+                        "credit": 4,
+                        "targetedGrade": "A",
+                        "totalAssessmentPercentage": 78.4,
+                        "realGrade": "B+"
+                    }, {
+                        "courseCode": "SCSJ4302",
+                        "courseName": "Object-Oriented Programming",
+                        "section": 1,
+                        "credit": 4,
+                        "targetedGrade": "A+",
+                        "totalAssessmentPercentage": 80.4,
+                        "realGrade": "A"
+                    }]
+                }, {
+                    "semesterNo": 2,
+                    "durationInWeek": 8,
+                    "targetedGPA": 4.00,
+                    "realGPA": 4.00,
+                    "totalCredit": 15,
+                    "semesterStatus": "completed",
+                    "courses": [{
+                        "courseCode": "SCSJ4401",
+                        "courseName": "Mobile Application Programming",
+                        "section": 2,
+                        "credit": 4,
+                        "targetedGrade": "A",
+                        "totalAssessmentPercentage": 78.4,
+                        "realGrade": "B+"
+                    }, {
+                        "courseCode": "SCSJ4302",
+                        "courseName": "Object-Oriented Programming",
+                        "section": 1,
+                        "credit": 4,
+                        "targetedGrade": "A+",
+                        "totalAssessmentPercentage": 80.4,
+                        "realGrade": "A"
+                    }]
+                }]
+            }
+        ],
+        "parents": [{
+            "studentRelations": [{
+                "relation": "Father"
+            }],
+            "user": {
+                "name": "parent name",
+                "profilePicURL": "https://pic/id/2912y812",
+                "phoneNo": "01111982733",
+                "gender": "male",
+                "birthDate": "1969-07-20 20:18:04Z",
+                "email": "std@gmail.com",
+                "loginCredential": {
+                    "username": "user-name",
+                    "password": "user@!23",
+                    "userType": "student"
+                }
+            }
+        }, {
+            "studentRelations": [{
+                "relation": "Mother"
+            }],
+            "user": {
+                "name": "parent name",
+                "profilePicURL": "https://pic/id/2912y812",
+                "phoneNo": "01111982733",
+                "gender": "female",
+                "birthDate": "1969-07-20 20:18:04Z",
+                "email": "std@gmail.com",
+                "loginCredential": {
+                    "username": "user-name",
+                    "password": "user@!23",
+                    "userType": "student"
+                }
+            }
+        }]
+    }]
+}
