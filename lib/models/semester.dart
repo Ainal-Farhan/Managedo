@@ -22,8 +22,8 @@ class Semester {
       : this(
           semesterNo: json['semesterNo'],
           durationInWeek: json['durationInWeek'],
-          targetedGPA: json['targetedGPA'],
-          realGPA: json['realGPA'],
+          targetedGPA: json['targetedGPA'].toDouble(),
+          realGPA: json['realGPA'].toDouble(),
           totalCredit: json['totalCredit'],
           semesterStatus: json['semesterStatus'],
           courses: json['courses'] != null
