@@ -21,7 +21,7 @@ class Parent extends User {
       Map<String, dynamic> jsonParent, Map<String, dynamic> jsonUser)
       : this(
           id: jsonParent['id'],
-          studentRelationsId: jsonParent['studentRelationsId'] as List,
+          studentRelationsId: [...jsonParent['studentRelationsId']],
           user: User.fromJson(jsonUser),
         );
   Parent.copy(Parent from)

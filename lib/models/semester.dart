@@ -28,7 +28,7 @@ class Semester {
           realGPA: json['realGPA'].toDouble(),
           totalCredit: json['totalCredit'],
           semesterStatus: json['semesterStatus'],
-          coursesId: json['coursesId'] as List,
+          coursesId: [...json['coursesId']],
         );
 
   Semester.copy(Semester from)

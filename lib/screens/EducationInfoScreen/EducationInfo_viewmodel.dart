@@ -1,26 +1,22 @@
+import 'package:managedo_mobile_app/models/education.dart';
+import 'package:managedo_mobile_app/services/education/education_service.dart';
+
 import '../../app/dependencies.dart';
 
-import '../../services/student/student_service.dart';
 import '../viewmodel.dart';
-import '../../models/student.dart';
 
 class EducationInfoViewmodel extends Viewmodel {
-  List<Student> students;
-  int _selected;
-  StudentService get dataService => dependency();
+  List<Education> educations;
+  EducationService get educationDataService => dependency();
 
-  void getStudentList() async {
+  Future<void> getEducationListBasedOnStudentId(int studentId) async {
     turnBusy();
-    students = await dataService.getStudentList();
-    _selected = null;
+    await educationDataService
+        .getEducationListBasedOnStudentId(studentId)
+        .then((educationsList) {
+      educations = educationsList;
+    });
+
     turnIdle();
-  }
-
-  Student get student =>
-      (students != null) && (_selected != null) ? students[_selected] : null;
-
-  void selectStudent(int index) {
-    _selected = index;
-    turnIdle(); // Only to call to notifyListneres()
   }
 }
