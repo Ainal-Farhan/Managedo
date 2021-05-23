@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../view.dart';
 import 'EducationInfo_viewmodel.dart';
 
-class EducationInfoScreen extends StatelessWidget {
+class EducationInfoView extends StatelessWidget {
   static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => EducationInfoScreen());
+      MaterialPageRoute(builder: (_) => EducationInfoView());
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,31 @@ class EducationInfoScreen extends StatelessWidget {
                       ),
                       title:
                           Text(education.degreeLevel + ' - ' + education.field),
-                      subtitle: Text(education.universityName),
+                      // subtitle: Text(education.universityName),
+                      subtitle: Row(
+                        children: [
+                          CircleAvatar(
+                            child:
+                                Text(education.targetedCGPA.toStringAsFixed(2)),
+                          ),
+                          CircleAvatar(
+                            child: Text(
+                                education.calculatedCGPA.toStringAsFixed(2)),
+                          ),
+                        ],
+                      ),
+                      // trailing: Column(
+                      //   children: [
+                      //     CircleAvatar(
+                      //       child:
+                      //           Text(education.targetedCGPA.toStringAsFixed(2)),
+                      //     ),
+                      //     CircleAvatar(
+                      //       child: Text(
+                      //           education.calculatedCGPA.toStringAsFixed(2)),
+                      //     ),
+                      //   ],
+                      // ),
                     );
                   },
                   separatorBuilder: (context, index) => Divider(

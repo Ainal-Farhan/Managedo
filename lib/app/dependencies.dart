@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:managedo_mobile_app/screens/EducationInfoScreen/EducationInfo_viewmodel.dart';
+import 'package:managedo_mobile_app/screens/ExampleScreen/Example_viewmodel.dart';
 import 'package:managedo_mobile_app/services/education/education_service.dart';
 import 'package:managedo_mobile_app/services/education/education_service_rest.dart';
 
@@ -18,4 +19,5 @@ void init() {
 
   // Viewmodels
   dependency.registerLazySingleton(() => EducationInfoViewmodel());
+  dependency.registerLazySingleton(() => ExampleViewmodel());
 }
