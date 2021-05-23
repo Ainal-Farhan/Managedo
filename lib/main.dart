@@ -15,7 +15,7 @@ void main() {
       title: 'Managedo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
-      initialRoute: router.exampleRoute,
+      initialRoute: router.educationRoute,
       onGenerateRoute: router.createRoute,
     ),
   );
