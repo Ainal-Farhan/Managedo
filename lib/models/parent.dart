@@ -1,57 +1,33 @@
-import 'package:managedo_mobile_app/models/login_credential.dart';
-import 'package:managedo_mobile_app/models/student_relationship.dart';
-
 import './user.dart';
-import './student_relationship.dart';
 
 class Parent extends User {
-  List<StudentRelationship> studentRelations;
+  int id;
+  List<int> studentRelationsId;
 
-  Parent(
-      {this.studentRelations,
-      name,
-      profilePicURL,
-      phoneNo,
-      gender,
-      birthDate,
-      email,
-      loginCredential})
-      : super(
-            name: name,
-            profilePicURL: profilePicURL,
-            phoneNo: phoneNo,
-            gender: gender,
-            birthDate: birthDate,
-            email: email,
-            loginCredential: loginCredential);
-  Parent.fromJson(Map<String, dynamic> json)
+  Parent({
+    this.id,
+    this.studentRelationsId,
+    User user,
+  }) : super(
+          name: user.name,
+          profilePicURL: user.profilePicURL,
+          phoneNo: user.phoneNo,
+          gender: user.gender,
+          birthDate: user.birthDate,
+          email: user.email,
+          loginCredentialId: user.loginCredentialId,
+        );
+  Parent.fromJson(
+      Map<String, dynamic> jsonParent, Map<String, dynamic> jsonUser)
       : this(
-            studentRelations: json['studentRelations'] != null
-                ? (json['studentRelations'] as List)
-                    .map((studentRelation) =>
-                        StudentRelationship.fromJson(studentRelation))
-                    .toList()
-                : [],
-            name: json['name'],
-            profilePicURL: json['profilePicURL'],
-            phoneNo: json['phoneNo'],
-            gender: json['gender'],
-            birthDate: DateTime.parse(json['birthDate']),
-            email: json['email'],
-            loginCredential: json['loginCredential'] != null
-                ? LoginCredential.fromJson(json['loginCredential'])
-                : null);
+          id: jsonParent['id'],
+          studentRelationsId: jsonParent['studentRelationsId'] as List,
+          user: User.fromJson(jsonUser),
+        );
   Parent.copy(Parent from)
       : this(
-            studentRelations: from.studentRelations
-                .map((studentRelation) =>
-                    StudentRelationship.copy(studentRelation))
-                .toList(),
-            name: from.name,
-            profilePicURL: from.profilePicURL,
-            phoneNo: from.phoneNo,
-            gender: from.gender,
-            birthDate: from.birthDate,
-            email: from.email,
-            loginCredential: from.loginCredential);
+          id: from.id,
+          studentRelationsId: [...from.studentRelationsId],
+          user: User.copy(from),
+        );
 }

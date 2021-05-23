@@ -1,17 +1,27 @@
 class LoginCredential {
+  int id;
+  int userId;
   String username;
   String password;
-  String userType;
 
-  LoginCredential({this.username, this.password, this.userType});
+  LoginCredential({
+    this.id,
+    this.userId,
+    this.username,
+    this.password,
+  });
   LoginCredential.fromJson(Map<String, dynamic> json)
       : this(
-            username: json['username'],
-            password: json['password'],
-            userType: json['userType']);
+          id: json['id'],
+          userId: json['userId'],
+          username: json['username'],
+          password: json['password'],
+        );
   LoginCredential.copy(LoginCredential from)
       : this(
-            username: from.username,
-            password: from.password,
-            userType: from.userType);
+          id: from.id,
+          userId: from.userId,
+          username: from.username,
+          password: from.password,
+        );
 }

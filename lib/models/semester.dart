@@ -1,36 +1,34 @@
-import './course.dart';
-
 class Semester {
+  int id;
   int semesterNo;
   int durationInWeek;
   double targetedGPA;
   double realGPA;
   int totalCredit;
   String semesterStatus;
-  List<Course> courses;
+  List<int> coursesId;
 
-  Semester(
-      {this.semesterNo,
-      this.durationInWeek,
-      this.targetedGPA,
-      this.realGPA,
-      this.totalCredit,
-      this.semesterStatus,
-      this.courses});
+  Semester({
+    this.id,
+    this.semesterNo,
+    this.durationInWeek,
+    this.targetedGPA,
+    this.realGPA,
+    this.totalCredit,
+    this.semesterStatus,
+    this.coursesId,
+  });
 
   Semester.fromJson(Map<String, dynamic> json)
       : this(
+          id: json['id'],
           semesterNo: json['semesterNo'],
           durationInWeek: json['durationInWeek'],
           targetedGPA: json['targetedGPA'].toDouble(),
           realGPA: json['realGPA'].toDouble(),
           totalCredit: json['totalCredit'],
           semesterStatus: json['semesterStatus'],
-          courses: json['courses'] != null
-              ? (json['courses'] as List)
-                  .map((course) => Course.fromJson(course))
-                  .toList()
-              : [],
+          coursesId: json['coursesId'] as List,
         );
 
   Semester.copy(Semester from)
@@ -41,6 +39,6 @@ class Semester {
           realGPA: from.realGPA,
           totalCredit: from.totalCredit,
           semesterStatus: from.semesterStatus,
-          courses: from.courses.map((course) => Course.copy(course)).toList(),
+          coursesId: [...from.coursesId],
         );
 }
