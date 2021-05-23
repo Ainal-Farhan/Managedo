@@ -80,6 +80,7 @@
 
     "educations": [{
         "id": 1,
+        "studentId": 1,
         "universityName": "UTM",
         "field": "Software Engineering",
         "degreeLevel": "Bachelor",
@@ -89,13 +90,14 @@
         "semestersId": [1, 2]
     }, {
         "id": 2,
+        "studentId": 1,
         "universityName": "UiTM",
         "field": "Software Engineering",
         "degreeLevel": "Master",
         "startDate": "1969-07-20 20:18:04Z",
         "targetedCGPA": 4.0,
         "calculatedCGPA": 3.78,
-        "semesters": [3, 4]
+        "semestersId": [3, 4]
     }],
 
     "semesters": [{
@@ -115,7 +117,7 @@
         "realGPA": 4.0,
         "totalCredit": 15,
         "semesterStatus": "completed",
-        "courses": [3, 4]
+        "coursesId": [3, 4]
     }, {
         "id": 3,
         "semesterNo": 1,

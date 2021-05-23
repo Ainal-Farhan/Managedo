@@ -24,8 +24,8 @@ class Student extends User {
       Map<String, dynamic> jsonStudent, Map<String, dynamic> jsonUser)
       : this(
           matricNumber: jsonStudent['matricNumber'],
-          educationsId: jsonStudent['educationsId'] as List,
-          parentsId: jsonStudent['parentsId'] as List,
+          educationsId: [...jsonStudent['educationsId']],
+          parentsId: [...jsonStudent['parentsId']],
           user: User.fromJson(jsonUser),
         );
   Student.copy(Student from)

@@ -1,5 +1,6 @@
 class Education {
   int id;
+  int studentId;
   String universityName;
   String field;
   String degreeLevel;
@@ -10,6 +11,7 @@ class Education {
 
   Education({
     this.id,
+    this.studentId,
     this.universityName,
     this.field,
     this.degreeLevel,
@@ -22,18 +24,20 @@ class Education {
   Education.fromJson(Map<String, dynamic> json)
       : this(
           id: json['id'],
+          studentId: json['studentId'],
           universityName: json['universityName'],
           field: json['field'],
           degreeLevel: json['degreeLevel'],
           startDate: DateTime.parse(json['startDate']),
           targetedCGPA: json['targetedCGPA'].toDouble(),
           calculatedCGPA: json['calculatedCGPA'].toDouble(),
-          semestersId: json['semestersId'] as List,
+          semestersId: [...json['semestersId']],
         );
 
   Education.copy(Education from)
       : this(
           id: from.id,
+          studentId: from.studentId,
           universityName: from.universityName,
           field: from.field,
           degreeLevel: from.degreeLevel,
