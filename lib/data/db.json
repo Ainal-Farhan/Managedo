@@ -84,9 +84,9 @@
         "universityName": "UTM",
         "field": "Software Engineering",
         "degreeLevel": "Bachelor",
-        "startDate": "1969-07-20 20:18:04Z",
+        "startDate": "1969-07-20",
         "targetedCGPA": 4.0,
-        "calculatedCGPA": 3.78,
+        "calculatedCGPA": 2.78,
         "semestersId": [1, 2]
     }, {
         "id": 2,
@@ -94,7 +94,7 @@
         "universityName": "UiTM",
         "field": "Software Engineering",
         "degreeLevel": "Master",
-        "startDate": "1969-07-20 20:18:04Z",
+        "startDate": "2021-12-20",
         "targetedCGPA": 4.0,
         "calculatedCGPA": 3.78,
         "semestersId": [3, 4]
