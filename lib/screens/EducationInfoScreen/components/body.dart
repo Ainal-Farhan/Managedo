@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../EducationInfo_view.dart';
-
 class Body extends StatelessWidget {
-  const Body({state, viewmodel})
-      : _state = state,
-        _viewmodel = viewmodel;
+  // const Body({state, viewmodel})
+  //     : _state = state,
+  //       _viewmodel = viewmodel;
+  const Body({state, viewmodel}) : _viewmodel = viewmodel;
 
-  final EducationInfoView _state;
+  // final EducationInfoView _state;
   final _viewmodel;
 
   @override
@@ -212,7 +211,7 @@ class Body extends StatelessWidget {
                                           ),
                                         ),
                                       ],
-                                    ),
+                                    )
                                   ],
                                 ),
                               ),
