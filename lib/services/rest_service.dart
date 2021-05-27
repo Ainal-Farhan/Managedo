@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class RestService {
   // Change the baseUrl based on your laptop's IP address
-  static const String baseUrl = 'http://192.168.1.2:3000';
+  static const String baseUrl = 'http://192.168.43.156:3000';
 
   String get url => baseUrl;
 
