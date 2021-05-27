@@ -81,7 +81,7 @@
     "educations": [{
         "id": 1,
         "studentId": 1,
-        "universityName": "UTM",
+        "universityName": "Universiti Teknologi Malaysia (UTM)",
         "field": "Software Engineering",
         "degreeLevel": "Bachelor",
         "startDate": "1969-07-20",
@@ -91,7 +91,7 @@
     }, {
         "id": 2,
         "studentId": 1,
-        "universityName": "UiTM",
+        "universityName": "Universiti Teknologi Mara (UiTM)",
         "field": "Software Engineering",
         "degreeLevel": "Master",
         "startDate": "2021-12-20",
