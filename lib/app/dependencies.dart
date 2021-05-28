@@ -3,6 +3,7 @@ import 'package:managedo_mobile_app/screens/EducationInfoScreen/EducationInfo_vi
 import 'package:managedo_mobile_app/screens/ExampleScreen/Example_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/ListStudentsScreen/ListStudents_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_viewmodel.dart';
+import 'package:managedo_mobile_app/screens/StudentPerformanceScreen/StudentPerformanceGraph_viewmodel.dart';
 import 'package:managedo_mobile_app/services/education/education_service.dart';
 import 'package:managedo_mobile_app/services/education/education_service_rest.dart';
 
@@ -24,4 +25,5 @@ void init() {
   dependency.registerLazySingleton(() => ExampleViewmodel());
   dependency.registerLazySingleton(() => ListStudentsViewmodel());
   dependency.registerLazySingleton(() => SemesterListViewmodel());
+  dependency.registerLazySingleton(() => StudentPerformanceGraphViewmodel());
 }

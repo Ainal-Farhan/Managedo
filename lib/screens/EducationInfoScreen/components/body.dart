@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:managedo_mobile_app/app/router.dart' as router;
+
 class Body extends StatelessWidget {
   // const Body({state, viewmodel})
   //     : _state = state,
@@ -203,7 +205,11 @@ class Body extends StatelessWidget {
                                                     color: Colors.white,
                                                     size: 30,
                                                   ),
-                                                  onPressed: () => {},
+                                                  onPressed: () =>
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          router
+                                                              .listSemestersRoute),
                                                 )
                                               ],
                                             ),
