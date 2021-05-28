@@ -23,7 +23,7 @@ class StudentPerfomanceGraphState extends State<StudentPerformanceGraph> {
         child: Scaffold(
           appBar: Bar(),
           body: View<StudentPerformanceGraphViewmodel>(
-            initViewmodel: (viewmodel) => viewmodel.setAll(),
+            initViewmodel: (viewmodel) => viewmodel.init(),
             builder: (context, viewmodel, _) {
               return Body(
                 state: this,
