@@ -145,7 +145,6 @@
         "section": 2,
         "credit": 4,
         "targetedGrade": "A",
-        "totalAssessmentPercentage": 78.4,
         "realGrade": "B+"
     }, {
         "id": 2,
@@ -154,7 +153,6 @@
         "section": 1,
         "credit": 4,
         "targetedGrade": "A+",
-        "totalAssessmentPercentage": 80.4,
         "realGrade": "A"
     }, {
         "id": 3,
@@ -163,7 +161,6 @@
         "section": 2,
         "credit": 4,
         "targetedGrade": "A",
-        "totalAssessmentPercentage": 78.4,
         "realGrade": "B+"
     }, {
         "id": 4,
@@ -172,7 +169,6 @@
         "section": 1,
         "credit": 4,
         "targetedGrade": "A+",
-        "totalAssessmentPercentage": 80.4,
         "realGrade": "A"
     }, {
         "id": 5,
@@ -181,7 +177,6 @@
         "section": 2,
         "credit": 4,
         "targetedGrade": "A",
-        "totalAssessmentPercentage": 78.4,
         "realGrade": "B+"
     }, {
         "id": 6,
@@ -190,7 +185,6 @@
         "section": 1,
         "credit": 4,
         "targetedGrade": "A+",
-        "totalAssessmentPercentage": 80.4,
         "realGrade": "A"
     }, {
         "id": 7,
@@ -199,7 +193,6 @@
         "section": 2,
         "credit": 4,
         "targetedGrade": "A",
-        "totalAssessmentPercentage": 78.4,
         "realGrade": "B+"
     }, {
         "id": 8,
@@ -208,7 +201,6 @@
         "section": 1,
         "credit": 4,
         "targetedGrade": "A+",
-        "totalAssessmentPercentage": 80.4,
         "realGrade": "A"
     }]
 }
