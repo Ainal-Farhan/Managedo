@@ -57,8 +57,6 @@ class SemesterDetailsViewmodel extends Viewmodel {
 
   init() async {
     turnBusy();
-    await Future.delayed(Duration(seconds: 1)).then(
-      (value) => turnIdle(),
-    );
+    turnIdle();
   }
 }

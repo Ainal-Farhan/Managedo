@@ -54,8 +54,10 @@ class Body extends StatelessWidget {
                       currentValue: _viewmodel.courseList[index].courseCode,
                     ).then(
                       (value) {
-                        _viewmodel.courseList[index].courseCode = value;
-                        _state.rebuildState();
+                        if (value != null) {
+                          _viewmodel.courseList[index].courseCode = value;
+                          _state.rebuildState();
+                        }
                       },
                     ),
                   ),
@@ -67,8 +69,10 @@ class Body extends StatelessWidget {
                       currentValue: _viewmodel.courseList[index].courseName,
                     ).then(
                       (value) {
-                        _viewmodel.courseList[index].courseName = value;
-                        _state.rebuildState();
+                        if (value != null) {
+                          _viewmodel.courseList[index].courseName = value;
+                          _state.rebuildState();
+                        }
                       },
                     ),
                   ),
@@ -83,8 +87,11 @@ class Body extends StatelessWidget {
                           _viewmodel.courseList[index].section.toString(),
                     ).then(
                       (value) {
-                        _viewmodel.courseList[index].section = int.parse(value);
-                        _state.rebuildState();
+                        if (value != null) {
+                          _viewmodel.courseList[index].section =
+                              int.parse(value);
+                          _state.rebuildState();
+                        }
                       },
                     ),
                   ),
@@ -97,8 +104,11 @@ class Body extends StatelessWidget {
                           _viewmodel.courseList[index].credit.toString(),
                     ).then(
                       (value) {
-                        _viewmodel.courseList[index].credit = int.parse(value);
-                        _state.rebuildState();
+                        if (value != null) {
+                          _viewmodel.courseList[index].credit =
+                              int.parse(value);
+                          _state.rebuildState();
+                        }
                       },
                     ),
                   ),
@@ -111,8 +121,10 @@ class Body extends StatelessWidget {
                       currentValue: _viewmodel.courseList[index].targetedGrade,
                     ).then(
                       (value) {
-                        _viewmodel.courseList[index].targetedGrade = value;
-                        _state.rebuildState();
+                        if (value != null) {
+                          _viewmodel.courseList[index].targetedGrade = value;
+                          _state.rebuildState();
+                        }
                       },
                     ),
                   ),
@@ -125,8 +137,10 @@ class Body extends StatelessWidget {
                       currentValue: _viewmodel.courseList[index].realGrade,
                     ).then(
                       (value) {
-                        _viewmodel.courseList[index].realGrade = value;
-                        _state.rebuildState();
+                        if (value != null) {
+                          _viewmodel.courseList[index].realGrade = value;
+                          _state.rebuildState();
+                        }
                       },
                     ),
                   ),
