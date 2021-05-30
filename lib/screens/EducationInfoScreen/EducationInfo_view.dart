@@ -11,7 +11,7 @@ class EducationInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => Future.value(false),
+      onWillPop: () => Future.value(true),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
