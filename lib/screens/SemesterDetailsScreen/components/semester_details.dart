@@ -4,8 +4,8 @@ import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetail
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_viewmodel.dart';
 
 class SemesterDetails extends StatelessWidget {
-  SemesterDetailsState _state;
-  SemesterDetailsViewmodel _viewmodel;
+  final SemesterDetailsState _state;
+  final SemesterDetailsViewmodel _viewmodel;
 
   SemesterDetails({@required state, @required viewmodel})
       : _state = state,
@@ -29,7 +29,7 @@ class SemesterDetails extends StatelessWidget {
           title: Text('Enter edited value'),
           content: Row(
             children: <Widget>[
-              new Expanded(
+              Expanded(
                 child: Form(
                   key: _formKey,
                   autovalidateMode: AutovalidateMode.disabled,
@@ -172,49 +172,57 @@ class SemesterDetails extends StatelessWidget {
         padding: EdgeInsets.all(5.0),
         itemBuilder: (context, index) => Container(
           decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black26,
+            ),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(
               Radius.circular(10.0),
             ),
             gradient: LinearGradient(
               colors: [
+                Colors.black87,
                 Colors.green,
-                Colors.black,
+                Colors.white54,
               ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
           ),
-          child: SizedBox(
+          child: Container(
             height: 50,
             child: ListTile(
               leading: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 140,
+                  Container(
+                    width: 150,
                     child: Text(
                       _viewmodel.semesterLabels[index].toUpperCase(),
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 1.0,
-                        fontSize: 16,
+                        fontSize: 15,
                       ),
                     ),
                   ),
                 ],
               ),
-              title: Text(
-                ': ' + _viewmodel.semesterDetails[index],
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
+              title: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  ': ' + _viewmodel.semesterDetails[index],
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
               trailing: index != 0 && index != 4
                   ? IconButton(
                       icon: Icon(Icons.keyboard_arrow_right),
-                      color: Colors.white,
+                      color: Colors.black,
                       onPressed: () async => await (index == 1
                               ? _editDuration(
                                   context: context,

@@ -148,7 +148,7 @@ class Body extends StatelessWidget {
                                                     size: 30,
                                                   ),
                                                   onPressed: () =>
-                                                      showAlert(context),
+                                                      _showAlert(context),
                                                 )
                                               ],
                                             ),
@@ -240,7 +240,7 @@ class Body extends StatelessWidget {
               ));
   }
 
-  showAlert(BuildContext context) {
+  _showAlert(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

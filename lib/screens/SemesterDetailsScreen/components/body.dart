@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_viewmodel.dart';
+import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/components/custom_course_list_tile.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/components/edit_course.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import './semester_details.dart';
@@ -19,8 +20,8 @@ class Body extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.width * 0.8,
-            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.7,
             margin: const EdgeInsets.all(2.5),
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
@@ -35,7 +36,7 @@ class Body extends StatelessWidget {
                 colors: [
                   Colors.white,
                   Colors.green,
-                  Colors.black,
+                  Colors.white,
                   Colors.green,
                 ],
               ),
@@ -45,7 +46,27 @@ class Body extends StatelessWidget {
               elevation: 10,
               child: Column(
                 children: <Widget>[
-                  CustomListTile(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(0),
+                        height: 30,
+                        width: 30,
+                        child: Center(
+                          child: IconButton(
+                            iconSize: 25,
+                            icon: Icon(Icons.delete_forever_outlined),
+                            onPressed: () => _showAlert(context),
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  CustomCourseListTile(
                     label: 'Course Code',
                     details:
                         _viewmodel.courseList[index].courseCode.toUpperCase(),
@@ -61,7 +82,7 @@ class Body extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomListTile(
+                  CustomCourseListTile(
                     label: 'Course Name',
                     details: _viewmodel.courseList[index].courseName,
                     onPressed: () async => await EditCourse.editCourseName(
@@ -76,7 +97,7 @@ class Body extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomListTile(
+                  CustomCourseListTile(
                     label: 'Section',
                     details:
                         (_viewmodel.courseList[index].section > 9 ? '' : '0') +
@@ -95,7 +116,7 @@ class Body extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomListTile(
+                  CustomCourseListTile(
                     label: 'Credit',
                     details: _viewmodel.courseList[index].credit.toString(),
                     onPressed: () async => await EditCourse.editCredit(
@@ -112,7 +133,7 @@ class Body extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomListTile(
+                  CustomCourseListTile(
                     label: 'Targeted Grade',
                     details: _viewmodel.courseList[index].targetedGrade
                         .toUpperCase(),
@@ -128,7 +149,7 @@ class Body extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomListTile(
+                  CustomCourseListTile(
                     label: 'Achieved Grade',
                     details:
                         _viewmodel.courseList[index].realGrade.toUpperCase(),
@@ -150,6 +171,34 @@ class Body extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Selected Course Information?'),
+          content: Text("Are You Sure Want To Proceed?"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("YES"),
+              onPressed: () {
+                //Put your code here which you want to execute on Yes button click.
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("NO"),
+              onPressed: () {
+                //Put your code here which you want to execute on No button click.
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -179,58 +228,6 @@ class Body extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CustomListTile extends StatelessWidget {
-  final String label;
-  final String details;
-  final Function onPressed;
-
-  CustomListTile({
-    @required this.label,
-    @required this.details,
-    @required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 45,
-      decoration: BoxDecoration(
-        color: null,
-      ),
-      child: ListTile(
-        isThreeLine: false,
-        leading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 75,
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-        title: Text(
-          details,
-          style: TextStyle(
-            fontSize: 11,
-            color: Colors.white,
-          ),
-        ),
-        trailing: IconButton(
-          icon: Icon(Icons.keyboard_arrow_right),
-          color: Colors.white,
-          onPressed: onPressed,
-        ),
       ),
     );
   }

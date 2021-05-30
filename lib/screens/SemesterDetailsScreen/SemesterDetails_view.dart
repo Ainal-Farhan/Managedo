@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_viewmodel.dart';
+import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/components/bar.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/components/float.dart';
 import 'package:managedo_mobile_app/screens/view.dart';
 import './components/body.dart';
@@ -35,9 +36,8 @@ class SemesterDetailsState extends State<SemesterDetailsView> {
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            title: Text('Semester & Courses Information'),
-            centerTitle: true,
+          appBar: Bar(
+            title: 'Semester & Courses',
           ),
           body: View<SemesterDetailsViewmodel>(
             initViewmodel: (viewmodel) => viewmodel.init(),
