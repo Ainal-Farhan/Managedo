@@ -5,7 +5,6 @@ class Course {
   int section;
   int credit;
   String targetedGrade;
-  double totalAssessmentPercentage;
   String realGrade;
 
   Course({
@@ -15,7 +14,6 @@ class Course {
     this.section,
     this.credit,
     this.targetedGrade,
-    this.totalAssessmentPercentage,
     this.realGrade,
   });
 
@@ -27,7 +25,6 @@ class Course {
           section: json['section'],
           credit: json['credit'],
           targetedGrade: json['targetedGrade'],
-          totalAssessmentPercentage: json['totalAssessmentPercentage'],
           realGrade: json['realGrade'],
         );
 
@@ -39,7 +36,6 @@ class Course {
           section: from.section,
           credit: from.credit,
           targetedGrade: from.targetedGrade,
-          totalAssessmentPercentage: from.totalAssessmentPercentage,
           realGrade: from.realGrade,
         );
 }
