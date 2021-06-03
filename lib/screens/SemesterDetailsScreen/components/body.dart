@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.width * 0.7,
+            height: MediaQuery.of(context).size.height * 0.35,
             width: MediaQuery.of(context).size.width * 0.7,
             margin: const EdgeInsets.all(2.5),
             decoration: BoxDecoration(
@@ -207,24 +207,56 @@ class Body extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          SemesterDetails(
-            state: _state,
-            viewmodel: _viewmodel,
+          Container(
+            height: MediaQuery.of(context).size.height * 0.45,
+            child: SemesterDetails(
+              state: _state,
+              viewmodel: _viewmodel,
+            ),
           ),
-          Text(
-            'List of Courses',
-            style: TextStyle(
-              fontSize: 20,
+          Container(
+            height: MediaQuery.of(context).size.height * 0.05,
+            child: Text(
+              'List of Courses',
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
           ),
           Expanded(
-            child: ScrollSnapList(
-              onItemFocus: (index) => {},
-              itemSize: 10,
-              itemBuilder: _buildListItem,
-              itemCount: _viewmodel.courseList.length,
-              reverse: true,
-              focusOnItemTap: true,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.36,
+              child: Expanded(
+                child: ScrollSnapList(
+                  onItemFocus: (index) => {},
+                  itemSize: 10,
+                  itemBuilder: _buildListItem,
+                  itemCount: _viewmodel.courseList.length,
+                  reverse: true,
+                  focusOnItemTap: true,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 80,
+            color: Colors.green,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.list,
+                  color: Colors.white,
+                ),
+                Text(
+                  ' Semester Details',
+                  style: TextStyle(
+                    letterSpacing: 1.0,
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

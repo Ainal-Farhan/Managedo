@@ -8,6 +8,9 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text('List of Semester'),
+      leading: Icon(
+        Icons.bookmarks_sharp,
+      ),
       centerTitle: true,
     );
   }

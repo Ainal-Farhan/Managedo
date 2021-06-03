@@ -85,30 +85,26 @@ class Body extends StatelessWidget {
           ),
         ),
         Container(
-          height: 75,
+          height: 80,
+          color: Colors.green,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  10.0,
-                  0.0,
-                  5.0,
-                  0.0,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.bookmarks_sharp,
+                color: Colors.white,
+              ),
+              Text(
+                ' List of Semester',
+                style: TextStyle(
+                  letterSpacing: 1.0,
+                  fontSize: 18,
+                  color: Colors.white,
                 ),
-                child: TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(Icons.arrow_back_outlined),
-                        Text('BACK')
-                      ],
-                    )),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

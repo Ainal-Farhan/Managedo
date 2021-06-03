@@ -1,7 +1,8 @@
+import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 import './components/body.dart';
-import 'components/bar.dart';
+import './components/bar.dart';
 import '../view.dart';
 import './ListStudents_viewmodel.dart';
 
@@ -14,17 +15,28 @@ class ListStudentsScreen extends StatefulWidget {
 }
 
 class ListStudentsState extends State<ListStudentsScreen> {
+  int _currentPage = 2;
+
+  int get currentPage => _currentPage;
+  set currentPage(int currentPage) => this._currentPage = currentPage;
+
+  void setCurrentPage(int position) {
+    setState(() {
+      currentPage = position;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListStudentsView(
-        // state: this,
-        );
+      state: this,
+    );
   }
 }
 
 class ListStudentsView extends StatelessWidget {
-  // final ListStudentsState _state;
-  // ListStudentsView({state}) : _state = state;
+  final ListStudentsState _state;
+  ListStudentsView({state}) : _state = state;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +50,26 @@ class ListStudentsView extends StatelessWidget {
             builder: (context, viewmodel, _) {
               return Body();
             },
+          ),
+          bottomNavigationBar: FancyBottomNavigation(
+            circleColor: Colors.green,
+            initialSelection: _state.currentPage,
+            tabs: [
+              TabData(
+                iconData: Icons.person,
+                title: 'Profile',
+              ),
+              TabData(
+                iconData: Icons.home,
+                title: 'Home',
+              ),
+              TabData(
+                iconData: Icons.school_sharp,
+                title: 'Students',
+              ),
+            ],
+            onTabChangedListener: (int position) =>
+                _state.setCurrentPage(position),
           ),
         ),
       ),

@@ -19,7 +19,7 @@ const String allScreenRoute = '/allScreen';
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
     case educationRoute:
-      return EducationInfoView.route();
+      return EducationInfo.route();
     case exampleRoute:
       return ExampleView.route();
     case listStudentsRoute:

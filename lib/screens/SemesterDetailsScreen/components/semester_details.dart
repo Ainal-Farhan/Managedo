@@ -13,6 +13,34 @@ class SemesterDetails extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete This Semester Information?'),
+          content: Text("Are You Sure Want To Proceed?"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("YES"),
+              onPressed: () {
+                //Put your code here which you want to execute on Yes button click.
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("NO"),
+              onPressed: () {
+                //Put your code here which you want to execute on No button click.
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<dynamic> _asyncInputDialog({
     @required BuildContext context,
     String currentValue,
@@ -219,46 +247,52 @@ class SemesterDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              trailing: index != 0 && index != 4
-                  ? IconButton(
-                      icon: Icon(Icons.keyboard_arrow_right),
-                      color: Colors.black,
-                      onPressed: () async => await (index == 1
-                              ? _editDuration(
-                                  context: context,
-                                  currentValue:
-                                      _viewmodel.semesterDetails[index],
-                                )
-                              : index == 2
-                                  ? _editTargetedGPA(
+              trailing: index != 4
+                  ? index == 0
+                      ? IconButton(
+                          onPressed: () => _showAlert(context),
+                          icon: Icon(Icons.delete_forever_outlined),
+                          color: Colors.black,
+                        )
+                      : IconButton(
+                          icon: Icon(Icons.keyboard_arrow_right),
+                          color: Colors.black,
+                          onPressed: () async => await (index == 1
+                                  ? _editDuration(
                                       context: context,
                                       currentValue:
                                           _viewmodel.semesterDetails[index],
                                     )
-                                  : index == 3
-                                      ? _editAchievedGPA(
+                                  : index == 2
+                                      ? _editTargetedGPA(
                                           context: context,
                                           currentValue:
                                               _viewmodel.semesterDetails[index],
                                         )
-                                      : index == 5
-                                          ? _editSemesterStatus(
+                                      : index == 3
+                                          ? _editAchievedGPA(
                                               context: context,
                                               currentValue: _viewmodel
                                                   .semesterDetails[index],
                                             )
-                                          : null)
-                          .then(
-                        (value) {
-                          if (value != null) {
-                            _viewmodel.semesterDetails[index] =
-                                value.toString();
-                            _state.rebuildState();
-                          }
-                          return null;
-                        },
-                      ),
-                    )
+                                          : index == 5
+                                              ? _editSemesterStatus(
+                                                  context: context,
+                                                  currentValue: _viewmodel
+                                                      .semesterDetails[index],
+                                                )
+                                              : null)
+                              .then(
+                            (value) {
+                              if (value != null) {
+                                _viewmodel.semesterDetails[index] =
+                                    value.toString();
+                                _state.rebuildState();
+                              }
+                              return null;
+                            },
+                          ),
+                        )
                   : Text(''),
             ),
           ),

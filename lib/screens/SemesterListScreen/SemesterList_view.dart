@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'components/bar.dart';
 import 'components/body.dart';
 import 'components/float.dart';
 
@@ -16,7 +15,6 @@ class SemesterListView extends StatelessWidget {
         onWillPop: () => Future.value(true),
         child: SafeArea(
           child: Scaffold(
-            appBar: Bar(),
             body: View<SemesterListViewmodel>(
               initViewmodel: (viewmodel) => viewmodel,
               builder: (context, viewmodel, _) => Body(),
