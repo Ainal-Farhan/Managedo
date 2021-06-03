@@ -27,6 +27,7 @@ class Float extends StatelessWidget {
               Icons.arrow_back_outlined,
               color: Colors.black,
             ),
+            heroTag: null,
           ),
         ),
         Container(
@@ -48,6 +49,7 @@ class Float extends StatelessWidget {
               Icons.add,
               color: Colors.black,
             ),
+            heroTag: null,
           ),
         ),
       ],

@@ -15,6 +15,7 @@ class Float extends StatelessWidget {
             foregroundColor: Colors.black,
             elevation: 10.0,
             onPressed: () => Navigator.pop(context),
+            heroTag: null,
           ),
         ),
         FloatingActionButton(
@@ -26,6 +27,7 @@ class Float extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 10.0,
           onPressed: () => {},
+          heroTag: null,
         ),
       ],
     );

@@ -226,15 +226,13 @@ class Body extends StatelessWidget {
           Expanded(
             child: Container(
               height: MediaQuery.of(context).size.height * 0.36,
-              child: Expanded(
-                child: ScrollSnapList(
-                  onItemFocus: (index) => {},
-                  itemSize: 10,
-                  itemBuilder: _buildListItem,
-                  itemCount: _viewmodel.courseList.length,
-                  reverse: true,
-                  focusOnItemTap: true,
-                ),
+              child: ScrollSnapList(
+                onItemFocus: (index) => {},
+                itemSize: 10,
+                itemBuilder: _buildListItem,
+                itemCount: _viewmodel.courseList.length,
+                reverse: true,
+                focusOnItemTap: true,
               ),
             ),
           ),
