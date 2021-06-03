@@ -7,7 +7,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Container(),
+      leading: Icon(Icons.school_sharp),
       title: Text('List of Students'),
       centerTitle: true,
     );

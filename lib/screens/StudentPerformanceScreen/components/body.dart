@@ -16,15 +16,42 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          CustomBarChart(
-            barChart: _barChart,
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CustomBarChart(
+                  barChart: _barChart,
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        ),
+        Container(
+          height: 80,
+          color: Colors.green,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.auto_graph_outlined,
+                color: Colors.white,
+              ),
+              Text(
+                ' Performance Graph',
+                style: TextStyle(
+                  letterSpacing: 1.0,
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
