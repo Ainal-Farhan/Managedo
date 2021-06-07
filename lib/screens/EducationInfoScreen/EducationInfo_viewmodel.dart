@@ -12,7 +12,7 @@ class EducationInfoViewmodel extends Viewmodel {
   Future<void> getEducationListBasedOnStudentId(int studentId) async {
     turnBusy();
     await educationDataService
-        .getEducationListBasedOnStudentId(studentId)
+        .getEducationList()
         .then((educationsList) {
       educations = educationsList;
     });

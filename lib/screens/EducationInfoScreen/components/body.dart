@@ -100,22 +100,17 @@ class Body extends StatelessWidget {
                                                   text: '\nTargeted CGPA, ' +
                                                       education.targetedCGPA
                                                           .toStringAsFixed(2)),
-                                              TextSpan(
-                                                  text: '\nTotal Semester, ' +
-                                                      education
-                                                          .semestersId.length
-                                                          .toString()),
                                             ]),
                                       ),
                                       trailing: CircleAvatar(
                                         radius: 20.0,
                                         backgroundColor:
-                                            education.calculatedCGPA > 3.0
+                                            education.achievedCGPA > 3.0
                                                 ? Colors.green[400]
                                                 : Colors.red[400],
                                         foregroundColor: Colors.black,
                                         child: Text(
-                                          education.calculatedCGPA
+                                          education.achievedCGPA
                                               .toStringAsFixed(2),
                                         ),
                                       ),

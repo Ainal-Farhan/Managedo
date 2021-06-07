@@ -26,8 +26,8 @@ class Education {
           field: json['field'],
           degreeLevel: json['degreeLevel'],
           startDate: DateTime.parse(json['startDate']),
-          targetedCGPA: json['targetedCGPA'].toDouble(),
-          achievedCGPA: json['achievedCGPA'].toDouble(),
+          targetedCGPA: double.parse(json['targetedCGPA']),
+          achievedCGPA: double.parse(json['achievedCGPA']),
           fkStudentId: json['fkStudentId'],
         );
 

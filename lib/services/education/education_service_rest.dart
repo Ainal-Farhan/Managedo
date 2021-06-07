@@ -24,4 +24,13 @@ class EducationServiceRest implements EducationService {
         .map((education) => Education.fromJson(education))
         .toList();
   }
+
+  @override
+  Future<List<Education>> getEducationList() async {
+    final educationJson = await rest.get('$baseEndpoint');
+
+    return (educationJson as List)
+        .map((education) => Education.fromJson(education))
+        .toList();
+  }
 }
