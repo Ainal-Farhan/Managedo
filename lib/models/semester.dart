@@ -3,20 +3,18 @@ class Semester {
   int semesterNo;
   int durationInWeek;
   double targetedGPA;
-  double realGPA;
-  int totalCredit;
+  double achievedGPA;
   String semesterStatus;
-  List<int> coursesId;
+  int fkEducationId;
 
   Semester({
     this.id,
     this.semesterNo,
     this.durationInWeek,
     this.targetedGPA,
-    this.realGPA,
-    this.totalCredit, // removed
+    this.achievedGPA,
     this.semesterStatus,
-    this.coursesId,
+    this.fkEducationId,
   });
 
   Semester.fromJson(Map<String, dynamic> json)
@@ -25,10 +23,9 @@ class Semester {
           semesterNo: json['semesterNo'],
           durationInWeek: json['durationInWeek'],
           targetedGPA: json['targetedGPA'].toDouble(),
-          realGPA: json['realGPA'].toDouble(),
-          totalCredit: json['totalCredit'],
+          achievedGPA: json['achievedGPA'].toDouble(),
           semesterStatus: json['semesterStatus'],
-          coursesId: [...json['coursesId']],
+          fkEducationId: json['fkEducationId'],
         );
 
   Semester.copy(Semester from)
@@ -36,9 +33,8 @@ class Semester {
           semesterNo: from.semesterNo,
           durationInWeek: from.durationInWeek,
           targetedGPA: from.targetedGPA,
-          realGPA: from.realGPA,
-          totalCredit: from.totalCredit,
+          achievedGPA: from.achievedGPA,
           semesterStatus: from.semesterStatus,
-          coursesId: [...from.coursesId],
+          fkEducationId: from.fkEducationId,
         );
 }

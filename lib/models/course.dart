@@ -5,7 +5,8 @@ class Course {
   int section;
   int credit;
   String targetedGrade;
-  String realGrade;
+  String achievedGrade;
+  int fkSemesterId;
 
   Course({
     this.id,
@@ -14,7 +15,8 @@ class Course {
     this.section,
     this.credit,
     this.targetedGrade,
-    this.realGrade, // achievedGrade
+    this.achievedGrade, 
+    this.fkSemesterId,
   });
 
   Course.fromJson(Map<String, dynamic> json)
@@ -25,7 +27,8 @@ class Course {
           section: json['section'],
           credit: json['credit'],
           targetedGrade: json['targetedGrade'],
-          realGrade: json['realGrade'],
+          achievedGrade: json['achievedGrade'],
+          fkSemesterId: json['fkSemesterId'],
         );
 
   Course.copy(Course from)
@@ -36,6 +39,7 @@ class Course {
           section: from.section,
           credit: from.credit,
           targetedGrade: from.targetedGrade,
-          realGrade: from.realGrade,
+          achievedGrade: from.achievedGrade,
+          fkSemesterId: from.fkSemesterId,
         );
 }

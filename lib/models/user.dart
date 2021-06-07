@@ -7,8 +7,8 @@ class User {
   DateTime birthDate;
   String email;
   String userType;
-  int userTypeId;
-  int loginCredentialId;
+  int fkStudentId;
+  int fkParentId;
 
   User({
     this.id,
@@ -19,8 +19,8 @@ class User {
     this.birthDate,
     this.email,
     this.userType,
-    this.userTypeId,
-    this.loginCredentialId,
+    this.fkStudentId,
+    this.fkParentId,
   });
 
   User.fromJson(Map<String, dynamic> json)
@@ -33,8 +33,8 @@ class User {
           birthDate: DateTime.parse(json['birthDate']),
           email: json['email'],
           userType: json['userType'],
-          userTypeId: json['userTypeId'],
-          loginCredentialId: json['loginCredentialId'],
+          fkStudentId: json['fkStudentId'],
+          fkParentId: json['fkParentId'],
         );
 
   User.copy(User from)
@@ -47,7 +47,7 @@ class User {
           birthDate: from.birthDate,
           email: from.email,
           userType: from.userType,
-          userTypeId: from.userTypeId,
-          loginCredentialId: from.loginCredentialId,
+          fkStudentId: from.fkStudentId,
+          fkParentId: from.fkParentId,
         );
 }

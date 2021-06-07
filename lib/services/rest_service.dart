@@ -3,10 +3,10 @@ import 'package:http/http.dart' as http;
 
 class RestService {
   // Change the baseUrl based on your laptop's IP address
-  static const String baseHost = '192.168.42.9';
-  static const int basePort = 3000;
-  static const String baseUrl = 'http://$baseHost:$basePort';
-
+  static const String baseHost = 'https://managedo-backend.herokuapp.com/api';
+  // static const int basePort = 8080;
+  // static const String baseUrl = 'http://$baseHost:$basePort';
+  static const String baseUrl = '$baseHost';
   String get url => baseUrl;
 
   // get request

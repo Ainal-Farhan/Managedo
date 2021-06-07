@@ -20,15 +20,13 @@ class RestTest {
     Map<String, String> requestList = {
       "loginCredentials": "valid",
       "users": "valid",
-      "request": "students",
       "students": "valid",
       "parents": "valid",
-      "studentRelations": "valid",
+      "relations": "valid",
       "educations": "valid",
       "semesters": "valid",
       "courses": "valid",
       "students/1": "valid",
-      "students/peace-yall": "invalid",
     };
 
     // Get the base url from the rest_service.dart
