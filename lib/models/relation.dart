@@ -4,27 +4,27 @@
 class StudentRelations {
   int id;
   String relation;
-  int studentId;
-  int parentId;
+  int fkStudentId;
+  int fkParentId;
 
   StudentRelations({
     this.id,
     this.relation,
-    this.studentId,
-    this.parentId,
+    this.fkStudentId,
+    this.fkParentId,
   });
   StudentRelations.fromJson(Map<String, dynamic> json)
       : this(
           id: json['id'],
           relation: json['relation'],
-          studentId: json['studentId'],
-          parentId: json['parentId'],
+          fkStudentId: json['fkStudentId'],
+          fkParentId: json['fkParentId'],
         );
   StudentRelations.copy(StudentRelations from)
       : this(
           id: from.id,
           relation: from.relation,
-          studentId: from.studentId,
-          parentId: from.parentId,
+          fkStudentId: from.fkStudentId,
+          fkParentId: from.fkParentId,
         );
 }

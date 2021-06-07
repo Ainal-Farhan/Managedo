@@ -152,14 +152,14 @@ class Body extends StatelessWidget {
                   CustomCourseListTile(
                     label: 'Achieved Grade',
                     details:
-                        _viewmodel.courseList[index].realGrade.toUpperCase(),
+                        _viewmodel.courseList[index].achievedGrade.toUpperCase(),
                     onPressed: () async => await EditCourse.editAchievedGrade(
                       context: context,
-                      currentValue: _viewmodel.courseList[index].realGrade,
+                      currentValue: _viewmodel.courseList[index].achievedGrade,
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].realGrade = value;
+                          _viewmodel.courseList[index].achievedGrade = value;
                           _state.rebuildState();
                         }
                       },
