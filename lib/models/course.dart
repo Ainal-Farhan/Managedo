@@ -14,7 +14,7 @@ class Course {
     this.section,
     this.credit,
     this.targetedGrade,
-    this.realGrade,
+    this.realGrade, // achievedGrade
   });
 
   Course.fromJson(Map<String, dynamic> json)

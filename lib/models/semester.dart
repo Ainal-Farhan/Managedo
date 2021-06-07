@@ -14,7 +14,7 @@ class Semester {
     this.durationInWeek,
     this.targetedGPA,
     this.realGPA,
-    this.totalCredit,
+    this.totalCredit, // removed
     this.semesterStatus,
     this.coursesId,
   });
