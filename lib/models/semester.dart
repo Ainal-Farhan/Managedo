@@ -22,8 +22,8 @@ class Semester {
           id: json['id'],
           semesterNo: json['semesterNo'],
           durationInWeek: json['durationInWeek'],
-          targetedGPA: double.parse(json['targetedGPA']),
-          achievedGPA: double.parse(json['achievedGPA']),
+          targetedGPA: json['targetedGPA'].toDouble(),
+          achievedGPA: json['achievedGPA'].toDouble(),
           semesterStatus: json['semesterStatus'],
           fkEducationId: json['fkEducationId'],
         );
