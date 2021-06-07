@@ -35,30 +35,6 @@ class AllScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text('Semester List'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.keyboard_arrow_right),
-                    onPressed: () async =>
-                        await Navigator.pushNamed(context, listSemestersRoute),
-                  ),
-                ),
-                ListTile(
-                  title: Text('Performance Graph'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.keyboard_arrow_right),
-                    onPressed: () async => await Navigator.pushNamed(
-                        context, performanceGraphRoute),
-                  ),
-                ),
-                ListTile(
-                  title: Text('Semester Details'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.keyboard_arrow_right),
-                    onPressed: () async => await Navigator.pushNamed(
-                        context, semesterDetailsRoute),
-                  ),
-                ),
-                ListTile(
                   title: Text('Example'),
                   trailing: IconButton(
                     icon: Icon(Icons.keyboard_arrow_right),

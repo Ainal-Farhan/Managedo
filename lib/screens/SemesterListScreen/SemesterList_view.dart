@@ -6,8 +6,12 @@ import 'SemesterList_viewmodel.dart';
 import '../view.dart';
 
 class SemesterListView extends StatelessWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => SemesterListView());
+  final int educationId;
+
+  SemesterListView({@required this.educationId});
+
+  static Route<dynamic> route({@required educationId}) =>
+      MaterialPageRoute(builder: (_) => SemesterListView(educationId:educationId));
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +20,8 @@ class SemesterListView extends StatelessWidget {
         child: SafeArea(
           child: Scaffold(
             body: View<SemesterListViewmodel>(
-              initViewmodel: (viewmodel) => viewmodel,
-              builder: (context, viewmodel, _) => Body(),
+              initViewmodel: (viewmodel) => viewmodel.init(educationId: educationId),
+              builder: (context, viewmodel, _) => Body(viewmodel: viewmodel),
             ),
             floatingActionButton: Float(),
           ),

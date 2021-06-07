@@ -54,10 +54,6 @@ class _EducationInfoState extends State<EducationInfo> {
                 iconData: Icons.menu_book_rounded,
                 title: 'Education',
               ),
-              TabData(
-                iconData: Icons.auto_graph,
-                title: 'Performance',
-              ),
             ],
             onTabChangedListener: (int position) {
               setState(() {

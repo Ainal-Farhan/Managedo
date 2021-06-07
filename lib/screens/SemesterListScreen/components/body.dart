@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 
+import 'package:managedo_mobile_app/app/router.dart' as router;
+
 import './gradient_icon.dart';
 
 class Body extends StatelessWidget {
+  final _viewmodel;
+
+  Body({@required viewmodel}) : _viewmodel = viewmodel;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Expanded(
-          child: Padding(
+          child: _viewmodel.semesterList != null
+              ?Padding(
             padding: const EdgeInsets.all(5),
             child: GridView.count(
               crossAxisCount: 2,
               crossAxisSpacing: 7,
               mainAxisSpacing: 7,
-              children: [
-                'sem1',
-                'sem2',
-                'sem3',
-                'sem4',
-                'sem5',
-                'sem6',
-                'sem7',
-                'sem8',
-              ]
-                  .map(
-                    (sem) => InkWell(
-                      onTap: () {},
+              children:  (_viewmodel.semesterList as List)
+                  .map((sem) => InkWell(
+                      onTap: () => Navigator.pushNamed(context, router.semesterDetailsRoute,arguments: sem.id,),
                       child: Container(
                         decoration: BoxDecoration(
                           boxShadow: [
@@ -64,16 +61,15 @@ class Body extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    '#$sem',
+                                    'Sem #${sem.semesterNo}',
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ],
                               ),
                               SizedBox(height: 10),
-                              Text('Real GPA: 3.78'),
-                              Text('Targeted GPA: 3.78'),
-                              Text('Status: Incomplete'),
-                              Text('Total Credit: 15'),
+                              Text('Achieved GPA: ${sem.targetedGPA.toStringAsFixed(2)}'),
+                              Text('Targeted GPA: ${sem.achievedGPA.toStringAsFixed(2)}'),
+                              Text('Status: ${sem.semesterStatus}'),
                             ],
                           ),
                         ),
@@ -82,7 +78,7 @@ class Body extends StatelessWidget {
                   )
                   .toList(),
             ),
-          ),
+          ): Container(),
         ),
         Container(
           height: 80,

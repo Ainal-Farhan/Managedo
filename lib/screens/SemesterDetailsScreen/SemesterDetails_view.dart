@@ -5,8 +5,12 @@ import 'package:managedo_mobile_app/screens/view.dart';
 import './components/body.dart';
 
 class SemesterDetailsView extends StatefulWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => SemesterDetailsView());
+  final int semesterId;
+
+  SemesterDetailsView({@required this.semesterId});
+
+  static Route<dynamic> route({@required semesterId}) =>
+      MaterialPageRoute(builder: (_) => SemesterDetailsView(semesterId: semesterId,));
 
   @override
   SemesterDetailsState createState() => SemesterDetailsState();
@@ -36,7 +40,7 @@ class SemesterDetailsState extends State<SemesterDetailsView> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: View<SemesterDetailsViewmodel>(
-            initViewmodel: (viewmodel) => viewmodel.init(),
+            initViewmodel: (viewmodel) => viewmodel.init(semesterId: widget.semesterId, ),
             builder: (context, viewmodel, _) => Body(
               state: this,
               viewmodel: viewmodel,

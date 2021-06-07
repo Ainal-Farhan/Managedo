@@ -69,14 +69,14 @@ class Body extends StatelessWidget {
                   CustomCourseListTile(
                     label: 'Course Code',
                     details:
-                        _viewmodel.courseList[index].courseCode.toUpperCase(),
+                        _viewmodel.courses[index].courseCode.toUpperCase(),
                     onPressed: () async => await EditCourse.editCourseCode(
                       context: context,
-                      currentValue: _viewmodel.courseList[index].courseCode,
+                      currentValue: _viewmodel.courses[index].courseCode,
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].courseCode = value;
+                          _viewmodel.courses[index].courseCode = value;
                           _state.rebuildState();
                         }
                       },
@@ -84,14 +84,14 @@ class Body extends StatelessWidget {
                   ),
                   CustomCourseListTile(
                     label: 'Course Name',
-                    details: _viewmodel.courseList[index].courseName,
+                    details: _viewmodel.courses[index].courseName,
                     onPressed: () async => await EditCourse.editCourseName(
                       context: context,
-                      currentValue: _viewmodel.courseList[index].courseName,
+                      currentValue: _viewmodel.courses[index].courseName,
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].courseName = value;
+                          _viewmodel.courses[index].courseName = value;
                           _state.rebuildState();
                         }
                       },
@@ -100,16 +100,16 @@ class Body extends StatelessWidget {
                   CustomCourseListTile(
                     label: 'Section',
                     details:
-                        (_viewmodel.courseList[index].section > 9 ? '' : '0') +
-                            _viewmodel.courseList[index].section.toString(),
+                        (_viewmodel.courses[index].section > 9 ? '' : '0') +
+                            _viewmodel.courses[index].section.toString(),
                     onPressed: () async => await EditCourse.editSection(
                       context: context,
                       currentValue:
-                          _viewmodel.courseList[index].section.toString(),
+                          _viewmodel.courses[index].section.toString(),
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].section =
+                          _viewmodel.courses[index].section =
                               int.parse(value);
                           _state.rebuildState();
                         }
@@ -118,15 +118,15 @@ class Body extends StatelessWidget {
                   ),
                   CustomCourseListTile(
                     label: 'Credit',
-                    details: _viewmodel.courseList[index].credit.toString(),
+                    details: _viewmodel.courses[index].credit.toString(),
                     onPressed: () async => await EditCourse.editCredit(
                       context: context,
                       currentValue:
-                          _viewmodel.courseList[index].credit.toString(),
+                          _viewmodel.courses[index].credit.toString(),
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].credit =
+                          _viewmodel.courses[index].credit =
                               int.parse(value);
                           _state.rebuildState();
                         }
@@ -135,15 +135,15 @@ class Body extends StatelessWidget {
                   ),
                   CustomCourseListTile(
                     label: 'Targeted Grade',
-                    details: _viewmodel.courseList[index].targetedGrade
+                    details: _viewmodel.courses[index].targetedGrade
                         .toUpperCase(),
                     onPressed: () async => await EditCourse.editTargetedGrade(
                       context: context,
-                      currentValue: _viewmodel.courseList[index].targetedGrade,
+                      currentValue: _viewmodel.courses[index].targetedGrade,
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].targetedGrade = value;
+                          _viewmodel.courses[index].targetedGrade = value;
                           _state.rebuildState();
                         }
                       },
@@ -152,14 +152,14 @@ class Body extends StatelessWidget {
                   CustomCourseListTile(
                     label: 'Achieved Grade',
                     details:
-                        _viewmodel.courseList[index].achievedGrade.toUpperCase(),
+                        _viewmodel.courses[index].achievedGrade.toUpperCase(),
                     onPressed: () async => await EditCourse.editAchievedGrade(
                       context: context,
-                      currentValue: _viewmodel.courseList[index].achievedGrade,
+                      currentValue: _viewmodel.courses[index].achievedGrade,
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courseList[index].achievedGrade = value;
+                          _viewmodel.courses[index].achievedGrade = value;
                           _state.rebuildState();
                         }
                       },
@@ -224,17 +224,17 @@ class Body extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Container(
+            child: _viewmodel.courses != null ?Container(
               height: MediaQuery.of(context).size.height * 0.36,
               child: ScrollSnapList(
                 onItemFocus: (index) => {},
                 itemSize: 10,
                 itemBuilder: _buildListItem,
-                itemCount: _viewmodel.courseList.length,
+                itemCount: _viewmodel.courses.length,
                 reverse: true,
                 focusOnItemTap: true,
               ),
-            ),
+            ): Container(),
           ),
           Container(
             height: 80,

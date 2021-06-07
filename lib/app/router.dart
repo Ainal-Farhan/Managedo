@@ -25,11 +25,11 @@ Route<dynamic> createRoute(settings) {
     case listStudentsRoute:
       return ListStudentsScreen.route();
     case listSemestersRoute:
-      return SemesterListView.route();
+      return SemesterListView.route(educationId: settings.arguments);
     case performanceGraphRoute:
-      return StudentPerformanceGraph.route();
+      return StudentPerformanceGraph.route(fkEducationId: settings.arguments);
     case semesterDetailsRoute:
-      return SemesterDetailsView.route();
+      return SemesterDetailsView.route(semesterId: settings.arguments);
     case allScreenRoute:
       return AllScreen.route();
   }

@@ -193,6 +193,19 @@ class SemesterDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int totalCredit = 0;
+
+    if (_viewmodel.courses != null) _viewmodel.courses.forEach((course) { totalCredit += course.credit;});
+
+    final List<String> details = [
+      _viewmodel.sem.semesterNo.toString(),
+      _viewmodel.sem.durationInWeek.toString(),
+      _viewmodel.sem.targetedGPA.toStringAsFixed(2),
+      _viewmodel.sem.achievedGPA.toStringAsFixed(2),
+      _viewmodel.courses != null ? totalCredit.toString(): 'N/A',
+      _viewmodel.sem.semesterStatus
+    ];
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.4,
@@ -240,7 +253,7 @@ class SemesterDetails extends StatelessWidget {
               title: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  ': ' + _viewmodel.semesterDetails[index],
+                  ': ' + details[index],
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -260,26 +273,29 @@ class SemesterDetails extends StatelessWidget {
                           onPressed: () async => await (index == 1
                                   ? _editDuration(
                                       context: context,
-                                      currentValue:
-                                          _viewmodel.semesterDetails[index],
+                                      currentValue: _viewmodel
+                                          .sem.durationInWeek
+                                          .toString(),
                                     )
                                   : index == 2
                                       ? _editTargetedGPA(
                                           context: context,
-                                          currentValue:
-                                              _viewmodel.semesterDetails[index],
+                                          currentValue: _viewmodel
+                                              .sem.targetedGPA
+                                              .toStringAsFixed(2),
                                         )
                                       : index == 3
                                           ? _editAchievedGPA(
                                               context: context,
                                               currentValue: _viewmodel
-                                                  .semesterDetails[index],
+                                                  .sem.achievedGPA
+                                                  .toStringAsFixed(2),
                                             )
                                           : index == 5
                                               ? _editSemesterStatus(
                                                   context: context,
                                                   currentValue: _viewmodel
-                                                      .semesterDetails[index],
+                                                      .sem.semesterStatus,
                                                 )
                                               : null)
                               .then(
@@ -304,7 +320,7 @@ class SemesterDetails extends StatelessWidget {
           height: 1,
           indent: 0,
         ),
-        itemCount: _viewmodel.semesterDetails.length,
+        itemCount: 6,
       ),
     );
   }

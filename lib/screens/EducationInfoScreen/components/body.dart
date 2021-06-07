@@ -196,6 +196,39 @@ class Body extends StatelessWidget {
                                                   alignment: Alignment.center,
                                                   icon: Icon(
                                                     Icons
+                                                        .auto_graph_rounded,
+                                                    color: Colors.white,
+                                                    size: 30,
+                                                  ),
+                                                  onPressed: () =>
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          router
+                                                              .performanceGraphRoute,
+                                                              arguments:
+                                                              education.id),
+                                                )
+                                              ],
+                                            ),
+                                            onPressed: () {},
+                                          ),
+                                        ), Card(
+                                          color: Colors.white,
+                                          borderOnForeground: true,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          elevation: 10,
+                                          child: ElevatedButton(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                IconButton(
+                                                  alignment: Alignment.center,
+                                                  icon: Icon(
+                                                    Icons
                                                         .navigate_next_outlined,
                                                     color: Colors.white,
                                                     size: 30,
@@ -204,7 +237,8 @@ class Body extends StatelessWidget {
                                                       Navigator.pushNamed(
                                                           context,
                                                           router
-                                                              .listSemestersRoute),
+                                                              .listSemestersRoute,arguments:
+                                                              education.id),
                                                 )
                                               ],
                                             ),
