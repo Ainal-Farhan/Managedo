@@ -37,4 +37,14 @@ class Semester {
           semesterStatus: from.semesterStatus,
           fkEducationId: from.fkEducationId,
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'semesterNo': this.semesterNo,
+    'durationInWeek': this.durationInWeek,
+    'targetedGPA': this.targetedGPA,
+    'achievedGPA': this.achievedGPA,
+    'semesterStatus': this.semesterStatus,
+    'fkEducationId': this.fkEducationId,
+  };
 }

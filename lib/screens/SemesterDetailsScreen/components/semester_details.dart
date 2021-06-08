@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:managedo_mobile_app/models/semester.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_view.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_viewmodel.dart';
+import 'package:managedo_mobile_app/app/router.dart' as router;
+import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 
 class SemesterDetails extends StatelessWidget {
   final SemesterDetailsState _state;
@@ -23,9 +26,19 @@ class SemesterDetails extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("YES"),
-              onPressed: () {
-                //Put your code here which you want to execute on Yes button click.
-                Navigator.of(context).pop();
+              onPressed: () async {
+                final educationId = await _viewmodel.deleteSemester();
+
+                return educationId != -1
+                    ? Navigator.of(context).pushNamedAndRemoveUntil(
+                        router.listSemestersRoute, 
+                        (Route<dynamic> route) => false,
+                        arguments: SemesterListViewArguments(
+                          educationId: _state.widget.educationId,
+                          studentId: _state.widget.studentId,
+                        ),
+                      )
+                    : Navigator.pop(context);
               },
             ),
             TextButton(
@@ -121,9 +134,7 @@ class SemesterDetails extends StatelessWidget {
                   ? null
                   : 'Maximum Duration of Semester is 20 weeks',
     ).then(
-      (value) => value == null
-          ? null
-          : '$value week' + (int.parse(value) > 1 ? 's' : ''),
+      (value) => value == null ? null : value,
     );
   }
 
@@ -191,18 +202,44 @@ class SemesterDetails extends StatelessWidget {
         : '${value[0].toUpperCase()}${value.substring(1).toLowerCase()}');
   }
 
+  _updateSemesterInfo({String updatedInfo, int index}) {
+    Semester semester = _viewmodel.sem;
+
+    if (updatedInfo != null) {
+      switch (index) {
+        case 1:
+          semester.durationInWeek = int.parse(updatedInfo);
+          break;
+        case 2:
+          semester.targetedGPA = double.parse(updatedInfo);
+          break;
+        case 3:
+          semester.achievedGPA = double.parse(updatedInfo);
+          break;
+        case 5:
+          semester.semesterStatus = updatedInfo;
+          break;
+      }
+      _state.updateSemester(semester: semester);
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     int totalCredit = 0;
 
-    if (_viewmodel.courses != null) _viewmodel.courses.forEach((course) { totalCredit += course.credit;});
+    if (_viewmodel.courses != null)
+      _viewmodel.courses.forEach((course) {
+        totalCredit += course.credit;
+      });
 
     final List<String> details = [
       _viewmodel.sem.semesterNo.toString(),
       _viewmodel.sem.durationInWeek.toString(),
       _viewmodel.sem.targetedGPA.toStringAsFixed(2),
       _viewmodel.sem.achievedGPA.toStringAsFixed(2),
-      _viewmodel.courses != null ? totalCredit.toString(): 'N/A',
+      _viewmodel.courses != null ? totalCredit.toString() : 'N/A',
       _viewmodel.sem.semesterStatus
     ];
 
@@ -299,14 +336,10 @@ class SemesterDetails extends StatelessWidget {
                                                 )
                                               : null)
                               .then(
-                            (value) {
-                              if (value != null) {
-                                _viewmodel.semesterDetails[index] =
-                                    value.toString();
-                                _state.rebuildState();
-                              }
-                              return null;
-                            },
+                            (value) => _updateSemesterInfo(
+                              index: index,
+                              updatedInfo: value,
+                            ),
                           ),
                         )
                   : Text(''),

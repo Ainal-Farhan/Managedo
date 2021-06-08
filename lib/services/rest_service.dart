@@ -45,6 +45,19 @@ class RestService {
     throw response;
   }
 
+  // put request
+  Future put(String endpoint, {dynamic data}) async {
+    final response = await http.put(
+        Uri.parse('$baseUrl/$endpoint',),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(data));
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    }
+    throw response;
+  }
+
   // delete request
   Future delete(String endpoint) async {
     final response = await http.delete(

@@ -22,4 +22,24 @@ class CourseServiceRest implements CourseService {
             .toList()
         : null;
   }
+
+  @override
+  Future<Course> updateCourse(Course updatedCourse) async {
+    final updatedData = await rest
+        .put('$baseEndpoint/${updatedCourse.id}', data: updatedCourse.toJson())
+        .then((res) => updatedCourse)
+        .catchError((err) => null);
+        
+    return updatedData;
+  }
+
+  @override
+  Future<bool> deleteCourse(int courseId) async {
+    final isDeleted = await rest
+        .delete('$baseEndpoint/$courseId')
+        .then((res) => true)
+        .catchError((err) => false);
+
+    return isDeleted;
+  }
 }

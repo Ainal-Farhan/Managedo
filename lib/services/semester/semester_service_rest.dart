@@ -33,4 +33,21 @@ class SemesterServiceRest implements SemesterService {
 
     return Semester.fromJson(itemJson);
   }
+
+  @override
+  Future<Semester> updateSemester(Semester updatedSemester) async {
+    return await rest
+        .put('$baseEndpoint/${updatedSemester.id}',
+            data: updatedSemester.toJson())
+        .then((res) => updatedSemester)
+        .catchError((err) => null);
+  }
+
+  @override
+  Future<bool> deleteSemester(int semesterId) async {
+    return await rest
+        .delete('$baseEndpoint/$semesterId')
+        .then((res) => true)
+        .catchError((err) => false);
+  }
 }

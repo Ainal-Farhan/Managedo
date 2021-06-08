@@ -28,4 +28,9 @@ class Student extends User {
           matricNumber: from.matricNumber,
           user: User.copy(from),
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'matricNumber': this.id,
+  };
 }

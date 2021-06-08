@@ -6,15 +6,31 @@ import '../view.dart';
 import 'EducationInfo_viewmodel.dart';
 
 class EducationInfo extends StatefulWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => EducationInfo());
+  final int studentId;
+
+  EducationInfo({@required this.studentId});
+
+  static Route<dynamic> route({@required studentId}) => MaterialPageRoute(
+      builder: (_) => EducationInfo(
+            studentId: studentId,
+          ),
+        );
 
   @override
-  _EducationInfoState createState() => _EducationInfoState();
+  EducationInfoState createState() => EducationInfoState();
 }
 
-class _EducationInfoState extends State<EducationInfo> {
+class EducationInfoState extends State<EducationInfo> {
   int currentPage = 2;
+
+  String currentProcess = 'init';
+  int deletingEducationId = -1;
+
+  void deleteSelectedEducation({@required int educationId}) {
+    currentProcess = 'delete';
+    deletingEducationId = educationId;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +44,12 @@ class _EducationInfoState extends State<EducationInfo> {
             centerTitle: true,
           ),
           body: View<EducationInfoViewmodel>(
-            initViewmodel: (viewmodel) =>
-                viewmodel.getEducationListBasedOnStudentId(1),
+            initViewmodel: (viewmodel) => currentProcess == 'init'
+                ? viewmodel.init(studentId: widget.studentId)
+                : currentProcess == 'delete'
+                    ? viewmodel.deleteSelectedEducation(
+                        educationId: deletingEducationId, state: this)
+                    : viewmodel,
             builder: (context, viewmodel, _) {
               return Body(state: this, viewmodel: viewmodel);
             },

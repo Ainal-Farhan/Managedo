@@ -15,7 +15,7 @@ class Course {
     this.section,
     this.credit,
     this.targetedGrade,
-    this.achievedGrade, 
+    this.achievedGrade,
     this.fkSemesterId,
   });
 
@@ -42,4 +42,15 @@ class Course {
           achievedGrade: from.achievedGrade,
           fkSemesterId: from.fkSemesterId,
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'courseCode': this.courseCode,
+    'courseName': this.courseName,
+    'section': this.section,
+    'credit': this.credit,
+    'targetedGrade': this.targetedGrade,
+    'achievedGrade': this.achievedGrade,
+    'fkSemesterId': this.fkSemesterId,
+  };
 }

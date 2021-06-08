@@ -59,7 +59,8 @@ class Body extends StatelessWidget {
                           child: IconButton(
                             iconSize: 25,
                             icon: Icon(Icons.delete_forever_outlined),
-                            onPressed: () => _showAlert(context),
+                            onPressed: () => _showAlert(
+                                context, _viewmodel.courses[index].id),
                             color: Colors.black,
                           ),
                         ),
@@ -68,8 +69,7 @@ class Body extends StatelessWidget {
                   ),
                   CustomCourseListTile(
                     label: 'Course Code',
-                    details:
-                        _viewmodel.courses[index].courseCode.toUpperCase(),
+                    details: _viewmodel.courses[index].courseCode.toUpperCase(),
                     onPressed: () async => await EditCourse.editCourseCode(
                       context: context,
                       currentValue: _viewmodel.courses[index].courseCode,
@@ -77,7 +77,8 @@ class Body extends StatelessWidget {
                       (value) {
                         if (value != null) {
                           _viewmodel.courses[index].courseCode = value;
-                          _state.rebuildState();
+                          _state.updateSelectedCourse(
+                              course: _viewmodel.courses[index]);
                         }
                       },
                     ),
@@ -92,7 +93,8 @@ class Body extends StatelessWidget {
                       (value) {
                         if (value != null) {
                           _viewmodel.courses[index].courseName = value;
-                          _state.rebuildState();
+                          _state.updateSelectedCourse(
+                              course: _viewmodel.courses[index]);
                         }
                       },
                     ),
@@ -109,9 +111,9 @@ class Body extends StatelessWidget {
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courses[index].section =
-                              int.parse(value);
-                          _state.rebuildState();
+                          _viewmodel.courses[index].section = int.parse(value);
+                          _state.updateSelectedCourse(
+                              course: _viewmodel.courses[index]);
                         }
                       },
                     ),
@@ -121,22 +123,21 @@ class Body extends StatelessWidget {
                     details: _viewmodel.courses[index].credit.toString(),
                     onPressed: () async => await EditCourse.editCredit(
                       context: context,
-                      currentValue:
-                          _viewmodel.courses[index].credit.toString(),
+                      currentValue: _viewmodel.courses[index].credit.toString(),
                     ).then(
                       (value) {
                         if (value != null) {
-                          _viewmodel.courses[index].credit =
-                              int.parse(value);
-                          _state.rebuildState();
+                          _viewmodel.courses[index].credit = int.parse(value);
+                          _state.updateSelectedCourse(
+                              course: _viewmodel.courses[index]);
                         }
                       },
                     ),
                   ),
                   CustomCourseListTile(
                     label: 'Targeted Grade',
-                    details: _viewmodel.courses[index].targetedGrade
-                        .toUpperCase(),
+                    details:
+                        _viewmodel.courses[index].targetedGrade.toUpperCase(),
                     onPressed: () async => await EditCourse.editTargetedGrade(
                       context: context,
                       currentValue: _viewmodel.courses[index].targetedGrade,
@@ -144,7 +145,8 @@ class Body extends StatelessWidget {
                       (value) {
                         if (value != null) {
                           _viewmodel.courses[index].targetedGrade = value;
-                          _state.rebuildState();
+                          _state.updateSelectedCourse(
+                              course: _viewmodel.courses[index]);
                         }
                       },
                     ),
@@ -160,7 +162,8 @@ class Body extends StatelessWidget {
                       (value) {
                         if (value != null) {
                           _viewmodel.courses[index].achievedGrade = value;
-                          _state.rebuildState();
+                          _state.updateSelectedCourse(
+                              course: _viewmodel.courses[index]);
                         }
                       },
                     ),
@@ -174,7 +177,7 @@ class Body extends StatelessWidget {
     );
   }
 
-  _showAlert(BuildContext context) {
+  _showAlert(BuildContext context, int courseId) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -185,8 +188,8 @@ class Body extends StatelessWidget {
             TextButton(
               child: Text("YES"),
               onPressed: () {
-                //Put your code here which you want to execute on Yes button click.
                 Navigator.of(context).pop();
+                _state.deletedSelectedCourse(courseId: courseId);
               },
             ),
             TextButton(
@@ -224,17 +227,23 @@ class Body extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: _viewmodel.courses != null ?Container(
-              height: MediaQuery.of(context).size.height * 0.36,
-              child: ScrollSnapList(
-                onItemFocus: (index) => {},
-                itemSize: 10,
-                itemBuilder: _buildListItem,
-                itemCount: _viewmodel.courses.length,
-                reverse: true,
-                focusOnItemTap: true,
-              ),
-            ): Container(),
+            child: _viewmodel.courses != null && _viewmodel.courses.length > 0
+                ? Container(
+                    height: MediaQuery.of(context).size.height * 0.36,
+                    child: ScrollSnapList(
+                      onItemFocus: (index) => {},
+                      itemSize: 10,
+                      itemBuilder: _buildListItem,
+                      itemCount: _viewmodel.courses.length,
+                      reverse: true,
+                      focusOnItemTap: true,
+                    ),
+                  )
+                : Center(
+                    child: Container(
+                      child: Text('No Course Available'),
+                    ),
+                  ),
           ),
           Container(
             height: 80,

@@ -32,7 +32,7 @@ class SemesterDetailsViewmodel extends Viewmodel {
     'Complete',
   ];
 
-  init({@required semesterId}) async {
+  Future<void> init({@required semesterId}) async {
     turnBusy();
 
     sem = await _semesterService.getSemesterBasedOnId(semesterId);
@@ -40,6 +40,50 @@ class SemesterDetailsViewmodel extends Viewmodel {
     courses = await _courseService
         .getCourseListBasedOnSemesterId(semesterId)
         .catchError((err) => null);
+
+    turnIdle();
+  }
+
+  Future<int> deleteSemester() async {
+    final isDeleted = await _semesterService.deleteSemester(sem.id);
+    return isDeleted ? sem.fkEducationId : -1;
+  }
+
+  Future<void> deleteSelectedCourse({
+    @required selectedCourseId,
+    @required semesterId,
+  }) async {
+    turnBusy();
+
+    await _courseService.deleteCourse(selectedCourseId);
+    courses = await _courseService.getCourseListBasedOnSemesterId(semesterId);
+    sem = await _semesterService.getSemesterBasedOnId(semesterId);
+
+    turnIdle();
+  }
+
+  Future<void> updatedSelectedCourse({
+    @required updatedCourse,
+    @required semesterId,
+  }) async {
+    turnBusy();
+
+    await _courseService.updateCourse(updatedCourse);
+    courses = await _courseService.getCourseListBasedOnSemesterId(semesterId);
+    sem = await _semesterService.getSemesterBasedOnId(semesterId);
+
+    turnIdle();
+  }
+
+  Future<void> updateSemester({
+    @required updatedSemester,
+    @required semesterId,
+  }) async {
+    turnBusy();
+
+    await _semesterService.updateSemester(updatedSemester);
+    courses = await _courseService.getCourseListBasedOnSemesterId(semesterId);
+    sem = await _semesterService.getSemesterBasedOnId(semesterId);
 
     turnIdle();
   }

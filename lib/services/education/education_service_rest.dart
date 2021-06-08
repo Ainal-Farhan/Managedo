@@ -33,4 +33,14 @@ class EducationServiceRest implements EducationService {
         .map((education) => Education.fromJson(education))
         .toList();
   }
+
+  @override
+  Future<bool> deleteSelectedEducation(int educationId) async {
+    final bool isDeleted = await rest
+        .delete('$baseEndpoint/$educationId')
+        .then((value) => true)
+        .catchError((err) => false);
+
+    return isDeleted;
+  }
 }

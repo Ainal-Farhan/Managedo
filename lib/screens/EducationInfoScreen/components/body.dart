@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:managedo_mobile_app/app/router.dart' as router;
+import 'package:managedo_mobile_app/screens/EducationInfoScreen/EducationInfo_view.dart';
+import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 
 class Body extends StatelessWidget {
-  // const Body({state, viewmodel})
-  //     : _state = state,
-  //       _viewmodel = viewmodel;
-  const Body({state, viewmodel}) : _viewmodel = viewmodel;
+  const Body({state, viewmodel})
+      : _state = state,
+        _viewmodel = viewmodel;
 
-  // final EducationInfoView _state;
+  final EducationInfoState _state;
   final _viewmodel;
 
   @override
@@ -142,8 +143,11 @@ class Body extends StatelessWidget {
                                                     color: Colors.white,
                                                     size: 30,
                                                   ),
-                                                  onPressed: () =>
-                                                      _showAlert(context),
+                                                  onPressed: () => _showAlert(
+                                                      context,
+                                                      _viewmodel
+                                                          .educations[index]
+                                                          .id),
                                                 )
                                               ],
                                             ),
@@ -195,8 +199,7 @@ class Body extends StatelessWidget {
                                                 IconButton(
                                                   alignment: Alignment.center,
                                                   icon: Icon(
-                                                    Icons
-                                                        .auto_graph_rounded,
+                                                    Icons.auto_graph_rounded,
                                                     color: Colors.white,
                                                     size: 30,
                                                   ),
@@ -205,14 +208,15 @@ class Body extends StatelessWidget {
                                                           context,
                                                           router
                                                               .performanceGraphRoute,
-                                                              arguments:
+                                                          arguments:
                                                               education.id),
                                                 )
                                               ],
                                             ),
                                             onPressed: () {},
                                           ),
-                                        ), Card(
+                                        ),
+                                        Card(
                                           color: Colors.white,
                                           borderOnForeground: true,
                                           shape: RoundedRectangleBorder(
@@ -235,10 +239,15 @@ class Body extends StatelessWidget {
                                                   ),
                                                   onPressed: () =>
                                                       Navigator.pushNamed(
-                                                          context,
-                                                          router
-                                                              .listSemestersRoute,arguments:
-                                                              education.id),
+                                                        context,
+                                                        router
+                                                            .listSemestersRoute,
+                                                        arguments:
+                                                            SemesterListViewArguments(
+                                                              educationId: education.id, 
+                                                              studentId: education.fkStudentId,
+                                                            ),
+                                                      ),
                                                 )
                                               ],
                                             ),
@@ -269,7 +278,7 @@ class Body extends StatelessWidget {
               ));
   }
 
-  _showAlert(BuildContext context) {
+  _showAlert(BuildContext context, int educationId) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -279,22 +288,15 @@ class Body extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("YES"),
-              onPressed: () {
-                //Put your code here which you want to execute on Yes button click.
+              onPressed: () async {
                 Navigator.of(context).pop();
+                _state.deleteSelectedEducation(educationId: educationId);
               },
             ),
             TextButton(
               child: Text("NO"),
               onPressed: () {
                 //Put your code here which you want to execute on No button click.
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text("CANCEL"),
-              onPressed: () {
-                //Put your code here which you want to execute on Cancel button click.
                 Navigator.of(context).pop();
               },
             ),
