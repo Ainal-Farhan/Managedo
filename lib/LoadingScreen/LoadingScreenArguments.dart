@@ -45,8 +45,7 @@ abstract class LoadingScreenArguments extends StatefulWidget {
     this.image,
     this.title,
     this.backgroundColor,
-    this.styleTextUnderTheLoader = const TextStyle(
-        fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),
+    this.styleTextUnderTheLoader,
     this.initialMessage,
   });
 }

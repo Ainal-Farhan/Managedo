@@ -288,10 +288,9 @@ class Body extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("YES"),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                _state.deleteSelectedEducation(educationId: educationId);
-              },
+              onPressed: () => _state.deleteSelectedEducation(
+                educationId: educationId
+              ),
             ),
             TextButton(
               child: Text("NO"),

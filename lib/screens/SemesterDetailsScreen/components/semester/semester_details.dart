@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:managedo_mobile_app/models/semester.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_view.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_viewmodel.dart';
-import 'package:managedo_mobile_app/app/router.dart' as router;
-import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 
 class SemesterDetails extends StatelessWidget {
   final SemesterDetailsState _state;
@@ -26,20 +24,7 @@ class SemesterDetails extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("YES"),
-              onPressed: () async {
-                final educationId = await _viewmodel.deleteSemester();
-
-                return educationId != -1
-                    ? Navigator.of(context).pushNamedAndRemoveUntil(
-                        router.listSemestersRoute, 
-                        (Route<dynamic> route) => false,
-                        arguments: SemesterListViewArguments(
-                          educationId: _state.widget.educationId,
-                          studentId: _state.widget.studentId,
-                        ),
-                      )
-                    : Navigator.pop(context);
-              },
+              onPressed: () => _state.deleteSemester(),
             ),
             TextButton(
               child: Text("NO"),

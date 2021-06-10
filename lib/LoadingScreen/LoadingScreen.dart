@@ -12,10 +12,10 @@ class LoadingScreen extends LoadingScreenArguments {
     @required processes,
     @required nextScreenRoute,
     @required nextScreenArguments,
-    loaderColor,
+    loaderColor = Colors.black,
     image,
-    title,
-    backgroundColor,
+    @required title,
+    backgroundColor = Colors.white,
     styleTextUnderTheLoader = const TextStyle(
         fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),
     initialMessage,
@@ -71,12 +71,13 @@ class LoadingScreenState extends MessageState<LoadingScreen> {
       if (widget.nextScreenRoute is String) {
         // It's fairly safe to assume this is using the in-built material
         // named route component
-        Navigator.of(context).pushReplacementNamed(
+        Navigator.of(context).pushNamedAndRemoveUntil(
           widget.nextScreenRoute,
+          (Route<dynamic> route) => false,
           arguments: widget.nextScreenArguments,
         );
       } else {
-        throw new ArgumentError(
+        throw ArgumentError(
             'widget.nextScreenRoute must either be a route for the next screen in String datatype');
       }
     });
@@ -107,19 +108,24 @@ class LoadingScreenState extends MessageState<LoadingScreen> {
                 : Container(),
 
             /// Render the Title widget, loader and messages below each other
-            new Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                new Expanded(
+                Expanded(
                   flex: 0,
-                  child: new Container(
-                      child: new Column(
+                  child: Container(
+                      child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      new Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 30.0),
                       ),
-                      RichText(text: TextSpan(text: widget.title)),
+                      RichText(
+                        text: TextSpan(
+                          text: widget.title,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
                     ],
                   )),
                 ),
@@ -130,8 +136,8 @@ class LoadingScreenState extends MessageState<LoadingScreen> {
                     children: <Widget>[
                       /// Loader Animation Widget
                       CircularProgressIndicator(
-                        valueColor: new AlwaysStoppedAnimation<Color>(
-                            widget.loaderColor),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(widget.loaderColor),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),

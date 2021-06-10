@@ -11,8 +11,8 @@ class SemesterDetailsViewmodel extends Viewmodel {
   Semester sem;
   List<Course> courses;
 
-  CourseService get _courseService => dependency();
-  SemesterService get _semesterService => dependency();
+  static CourseService get _courseService => dependency();
+  static SemesterService get _semesterService => dependency();
 
   List<String> semesterLabels = [
     'Semester',
@@ -44,47 +44,32 @@ class SemesterDetailsViewmodel extends Viewmodel {
     turnIdle();
   }
 
-  Future<int> deleteSemester() async {
-    final isDeleted = await _semesterService.deleteSemester(sem.id);
-    return isDeleted ? sem.fkEducationId : -1;
+  static Future<bool> deleteSemester({int semesterId}) async {
+    return await _semesterService.deleteSemester(semesterId);
   }
 
-  Future<void> deleteSelectedCourse({
+  static Future<bool> deleteSelectedCourse({
     @required selectedCourseId,
     @required semesterId,
   }) async {
-    turnBusy();
-
-    await _courseService.deleteCourse(selectedCourseId);
-    courses = await _courseService.getCourseListBasedOnSemesterId(semesterId);
-    sem = await _semesterService.getSemesterBasedOnId(semesterId);
-
-    turnIdle();
+    return await _courseService.deleteCourse(selectedCourseId);
   }
 
-  Future<void> updatedSelectedCourse({
+  static Future<bool> updatedSelectedCourse({
     @required updatedCourse,
     @required semesterId,
   }) async {
-    turnBusy();
+    final result = await _courseService.updateCourse(updatedCourse);
 
-    await _courseService.updateCourse(updatedCourse);
-    courses = await _courseService.getCourseListBasedOnSemesterId(semesterId);
-    sem = await _semesterService.getSemesterBasedOnId(semesterId);
-
-    turnIdle();
+    return result != null;
   }
 
-  Future<void> updateSemester({
+  static Future<bool> updateSemester({
     @required updatedSemester,
     @required semesterId,
   }) async {
-    turnBusy();
+    final updated = await _semesterService.updateSemester(updatedSemester);
 
-    await _semesterService.updateSemester(updatedSemester);
-    courses = await _courseService.getCourseListBasedOnSemesterId(semesterId);
-    sem = await _semesterService.getSemesterBasedOnId(semesterId);
-
-    turnIdle();
+    return updated != null;
   }
 }

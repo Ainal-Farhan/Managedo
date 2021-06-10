@@ -1,5 +1,7 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:managedo_mobile_app/LoadingScreen/LoadingScreen.dart';
+import 'package:managedo_mobile_app/app/router.dart' as router;
 import './components/body.dart';
 
 import '../view.dart';
@@ -11,10 +13,10 @@ class EducationInfo extends StatefulWidget {
   EducationInfo({@required this.studentId});
 
   static Route<dynamic> route({@required studentId}) => MaterialPageRoute(
-      builder: (_) => EducationInfo(
-            studentId: studentId,
-          ),
-        );
+        builder: (_) => EducationInfo(
+          studentId: studentId,
+        ),
+      );
 
   @override
   EducationInfoState createState() => EducationInfoState();
@@ -23,13 +25,36 @@ class EducationInfo extends StatefulWidget {
 class EducationInfoState extends State<EducationInfo> {
   int currentPage = 2;
 
-  String currentProcess = 'init';
-  int deletingEducationId = -1;
+  Future<void> deleteSelectedEducation({@required int educationId}) {
+    final load = LoadingScreen(
+      processes: [
+        (LoadingScreenState loadState) async {
+          final isDeleted =
+              await EducationInfoViewmodel.deleteSelectedEducation(
+                  educationId: educationId);
 
-  void deleteSelectedEducation({@required int educationId}) {
-    currentProcess = 'delete';
-    deletingEducationId = educationId;
-    setState(() {});
+          loadState.message = 'Delete ' + (isDeleted ? 'Success' : 'Failed');
+          loadState.rebuildScreen();
+
+          await Future.delayed(Duration(milliseconds: 500));
+        },
+        (LoadingScreenState loadState) async {
+          loadState.message = 'Navigating to Education Info List Screen';
+          loadState.rebuildScreen();
+          await Future.delayed(Duration(milliseconds: 500));
+        }
+      ],
+      nextScreenArguments: widget.studentId,
+      nextScreenRoute: router.educationRoute,
+      title: 'Delete Selected Education Information',
+      initialMessage: 'Deleting ...',
+    );
+
+    return Navigator.pushNamed(
+      context,
+      router.loadingScreenRoute,
+      arguments: load,
+    );
   }
 
   @override
@@ -44,19 +69,18 @@ class EducationInfoState extends State<EducationInfo> {
             centerTitle: true,
           ),
           body: View<EducationInfoViewmodel>(
-            initViewmodel: (viewmodel) => currentProcess == 'init'
-                ? viewmodel.init(studentId: widget.studentId)
-                : currentProcess == 'delete'
-                    ? viewmodel.deleteSelectedEducation(
-                        educationId: deletingEducationId, state: this)
-                    : viewmodel,
+            initViewmodel: (viewmodel) =>
+                viewmodel.init(studentId: widget.studentId),
             builder: (context, viewmodel, _) {
               return Body(state: this, viewmodel: viewmodel);
             },
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => {},
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 30.0),
+            child: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => {},
+            ),
           ),
           bottomNavigationBar: FancyBottomNavigation(
             circleColor: Colors.green,
@@ -76,9 +100,16 @@ class EducationInfoState extends State<EducationInfo> {
               ),
             ],
             onTabChangedListener: (int position) {
-              setState(() {
-                currentPage = position;
-              });
+              switch (position) {
+                case 0:
+                  return Navigator.of(context).pushReplacementNamed(
+                    ''
+                  );
+                case 1:
+                  return Navigator.of(context).pushReplacementNamed(
+                    ''
+                  );
+              }
             },
           ),
         ),
