@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:managedo_mobile_app/models/semester.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_view.dart';
 import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_viewmodel.dart';
 
@@ -23,10 +24,7 @@ class SemesterDetails extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("YES"),
-              onPressed: () {
-                //Put your code here which you want to execute on Yes button click.
-                Navigator.of(context).pop();
-              },
+              onPressed: () => _state.deleteSemester(),
             ),
             TextButton(
               child: Text("NO"),
@@ -121,9 +119,7 @@ class SemesterDetails extends StatelessWidget {
                   ? null
                   : 'Maximum Duration of Semester is 20 weeks',
     ).then(
-      (value) => value == null
-          ? null
-          : '$value week' + (int.parse(value) > 1 ? 's' : ''),
+      (value) => value == null ? null : value,
     );
   }
 
@@ -191,8 +187,47 @@ class SemesterDetails extends StatelessWidget {
         : '${value[0].toUpperCase()}${value.substring(1).toLowerCase()}');
   }
 
+  _updateSemesterInfo({String updatedInfo, int index}) {
+    Semester semester = _viewmodel.sem;
+
+    if (updatedInfo != null) {
+      switch (index) {
+        case 1:
+          semester.durationInWeek = int.parse(updatedInfo);
+          break;
+        case 2:
+          semester.targetedGPA = double.parse(updatedInfo);
+          break;
+        case 3:
+          semester.achievedGPA = double.parse(updatedInfo);
+          break;
+        case 5:
+          semester.semesterStatus = updatedInfo;
+          break;
+      }
+      _state.updateSemester(semester: semester);
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    int totalCredit = 0;
+
+    if (_viewmodel.courses != null)
+      _viewmodel.courses.forEach((course) {
+        totalCredit += course.credit;
+      });
+
+    final List<String> details = [
+      _viewmodel.sem.semesterNo.toString(),
+      _viewmodel.sem.durationInWeek.toString(),
+      _viewmodel.sem.targetedGPA.toStringAsFixed(2),
+      _viewmodel.sem.achievedGPA.toStringAsFixed(2),
+      _viewmodel.courses != null ? totalCredit.toString() : 'N/A',
+      _viewmodel.sem.semesterStatus
+    ];
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.4,
@@ -240,7 +275,7 @@ class SemesterDetails extends StatelessWidget {
               title: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  ': ' + _viewmodel.semesterDetails[index],
+                  ': ' + details[index],
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -260,37 +295,36 @@ class SemesterDetails extends StatelessWidget {
                           onPressed: () async => await (index == 1
                                   ? _editDuration(
                                       context: context,
-                                      currentValue:
-                                          _viewmodel.semesterDetails[index],
+                                      currentValue: _viewmodel
+                                          .sem.durationInWeek
+                                          .toString(),
                                     )
                                   : index == 2
                                       ? _editTargetedGPA(
                                           context: context,
-                                          currentValue:
-                                              _viewmodel.semesterDetails[index],
+                                          currentValue: _viewmodel
+                                              .sem.targetedGPA
+                                              .toStringAsFixed(2),
                                         )
                                       : index == 3
                                           ? _editAchievedGPA(
                                               context: context,
                                               currentValue: _viewmodel
-                                                  .semesterDetails[index],
+                                                  .sem.achievedGPA
+                                                  .toStringAsFixed(2),
                                             )
                                           : index == 5
                                               ? _editSemesterStatus(
                                                   context: context,
                                                   currentValue: _viewmodel
-                                                      .semesterDetails[index],
+                                                      .sem.semesterStatus,
                                                 )
                                               : null)
                               .then(
-                            (value) {
-                              if (value != null) {
-                                _viewmodel.semesterDetails[index] =
-                                    value.toString();
-                                _state.rebuildState();
-                              }
-                              return null;
-                            },
+                            (value) => _updateSemesterInfo(
+                              index: index,
+                              updatedInfo: value,
+                            ),
                           ),
                         )
                   : Text(''),
@@ -304,7 +338,7 @@ class SemesterDetails extends StatelessWidget {
           height: 1,
           indent: 0,
         ),
-        itemCount: _viewmodel.semesterDetails.length,
+        itemCount: 6,
       ),
     );
   }

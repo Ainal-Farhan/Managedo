@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:managedo_mobile_app/app/router.dart' as router;
+import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetails_view.dart';
+import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 
 class Float extends StatelessWidget {
+  final SemesterDetailsState _state;
+
+  Float({@required state}): _state = state;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,7 +28,13 @@ class Float extends StatelessWidget {
           ),
           child: FloatingActionButton(
             backgroundColor: Color.fromRGBO(0, 0, 0, 0),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.of(context).pushReplacementNamed(
+              router.listSemestersRoute,
+              arguments: SemesterListViewArguments(
+                educationId: _state.widget.educationId,
+                studentId: _state.widget.studentId,
+              ),
+            ),
             isExtended: true,
             child: Icon(
               Icons.arrow_back_outlined,

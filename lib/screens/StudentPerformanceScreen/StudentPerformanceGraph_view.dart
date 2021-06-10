@@ -6,8 +6,14 @@ import './StudentPerformanceGraph_viewmodel.dart';
 import './components/body.dart';
 
 class StudentPerformanceGraph extends StatefulWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => StudentPerformanceGraph());
+  final int fkEducationId;
+
+  StudentPerformanceGraph({@required this.fkEducationId});
+
+  static Route<dynamic> route({@required fkEducationId}) =>
+      MaterialPageRoute(builder: (_) => 
+        StudentPerformanceGraph(fkEducationId: fkEducationId,)
+    );
 
   @override
   StudentPerfomanceGraphState createState() => StudentPerfomanceGraphState();
@@ -17,11 +23,11 @@ class StudentPerfomanceGraphState extends State<StudentPerformanceGraph> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => Future.value(true),
+      onWillPop: () => Future.value(false),
       child: SafeArea(
         child: Scaffold(
           body: View<StudentPerformanceGraphViewmodel>(
-            initViewmodel: (viewmodel) => viewmodel.init(),
+            initViewmodel: (viewmodel) => viewmodel.init(fkEducationId: widget.fkEducationId),
             builder: (context, viewmodel, _) {
               return Body(
                 state: this,

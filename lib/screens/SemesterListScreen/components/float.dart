@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:managedo_mobile_app/app/router.dart' as router;
+import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 
 class Float extends StatelessWidget {
+  final SemesterListView _state;
+
+  const Float({@required state}): _state = state;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,7 +20,11 @@ class Float extends StatelessWidget {
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
             elevation: 10.0,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
+              router.educationRoute, 
+              (route) => false, 
+              arguments:  _state.studentId,
+              ),
             heroTag: null,
           ),
         ),

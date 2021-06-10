@@ -24,4 +24,11 @@ class LoginCredential {
           username: from.username,
           password: from.password,
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'username': this.username,
+    'password': this.password,
+    'fkUserId': this.fkUserId,
+  };
 }

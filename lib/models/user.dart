@@ -50,4 +50,17 @@ class User {
           fkStudentId: from.fkStudentId,
           fkParentId: from.fkParentId,
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'name': this.name,
+    'profilePicURL': this.profilePicURL,
+    'phoneNo': this.phoneNo,
+    'gender': this.gender,
+    'birthDate': this.birthDate,
+    'email': this.email,
+    'userType': this.userType,
+    'fkStudentId': this.fkStudentId,
+    'fkParentId': this.fkParentId,
+  };
 }

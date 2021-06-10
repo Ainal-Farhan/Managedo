@@ -27,4 +27,11 @@ class StudentRelations {
           fkStudentId: from.fkStudentId,
           fkParentId: from.fkParentId,
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'relation': this.relation,
+    'fkStudentId': this.fkStudentId,
+    'fkParentId': this.fkParentId,
+  };
 }

@@ -27,4 +27,8 @@ class Parent extends User {
           id: from.id,
           user: User.copy(from),
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+  };
 }

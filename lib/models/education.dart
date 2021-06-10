@@ -42,4 +42,15 @@ class Education {
           achievedCGPA: from.achievedCGPA,
           fkStudentId: from.fkStudentId,
         );
+
+  Map<String, dynamic> toJson() => {
+    'id': this.id,
+    'universityName': this.universityName,
+    'field': this.field,
+    'degreeLevel': this.degreeLevel,
+    'startDate': this.startDate,
+    'targetedCGPA': this.targetedCGPA,
+    'achievedCGPA': this.achievedCGPA,
+    'fkStudentId': this.fkStudentId,
+  };
 }

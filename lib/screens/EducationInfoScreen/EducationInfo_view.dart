@@ -1,20 +1,61 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:managedo_mobile_app/LoadingScreen/LoadingScreen.dart';
+import 'package:managedo_mobile_app/app/router.dart' as router;
 import './components/body.dart';
 
 import '../view.dart';
 import 'EducationInfo_viewmodel.dart';
 
 class EducationInfo extends StatefulWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => EducationInfo());
+  final int studentId;
+
+  EducationInfo({@required this.studentId});
+
+  static Route<dynamic> route({@required studentId}) => MaterialPageRoute(
+        builder: (_) => EducationInfo(
+          studentId: studentId,
+        ),
+      );
 
   @override
-  _EducationInfoState createState() => _EducationInfoState();
+  EducationInfoState createState() => EducationInfoState();
 }
 
-class _EducationInfoState extends State<EducationInfo> {
+class EducationInfoState extends State<EducationInfo> {
   int currentPage = 2;
+
+  Future<void> deleteSelectedEducation({@required int educationId}) {
+    final load = LoadingScreen(
+      processes: [
+        (LoadingScreenState loadState) async {
+          final isDeleted =
+              await EducationInfoViewmodel.deleteSelectedEducation(
+                  educationId: educationId);
+
+          loadState.message = 'Delete ' + (isDeleted ? 'Success' : 'Failed');
+          loadState.rebuildScreen();
+
+          await Future.delayed(Duration(milliseconds: 500));
+        },
+        (LoadingScreenState loadState) async {
+          loadState.message = 'Navigating to Education Info List Screen';
+          loadState.rebuildScreen();
+          await Future.delayed(Duration(milliseconds: 500));
+        }
+      ],
+      nextScreenArguments: widget.studentId,
+      nextScreenRoute: router.educationRoute,
+      title: 'Delete Selected Education Information',
+      initialMessage: 'Deleting ...',
+    );
+
+    return Navigator.pushNamed(
+      context,
+      router.loadingScreenRoute,
+      arguments: load,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +70,17 @@ class _EducationInfoState extends State<EducationInfo> {
           ),
           body: View<EducationInfoViewmodel>(
             initViewmodel: (viewmodel) =>
-                viewmodel.getEducationListBasedOnStudentId(1),
+                viewmodel.init(studentId: widget.studentId),
             builder: (context, viewmodel, _) {
               return Body(state: this, viewmodel: viewmodel);
             },
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => {},
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 30.0),
+            child: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => {},
+            ),
           ),
           bottomNavigationBar: FancyBottomNavigation(
             circleColor: Colors.green,
@@ -54,15 +98,18 @@ class _EducationInfoState extends State<EducationInfo> {
                 iconData: Icons.menu_book_rounded,
                 title: 'Education',
               ),
-              TabData(
-                iconData: Icons.auto_graph,
-                title: 'Performance',
-              ),
             ],
             onTabChangedListener: (int position) {
-              setState(() {
-                currentPage = position;
-              });
+              switch (position) {
+                case 0:
+                  return Navigator.of(context).pushReplacementNamed(
+                    ''
+                  );
+                case 1:
+                  return Navigator.of(context).pushReplacementNamed(
+                    ''
+                  );
+              }
             },
           ),
         ),
