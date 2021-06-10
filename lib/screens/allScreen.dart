@@ -42,6 +42,14 @@ class AllScreen extends StatelessWidget {
                         await Navigator.pushNamed(context, exampleRoute),
                   ),
                 ),
+                ListTile(
+                  title: Text('Loading Screen'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.keyboard_arrow_right),
+                    onPressed: () async =>
+                        await Navigator.pushNamed(context, loadingScreenRoute),
+                  ),
+                ),
               ],
             )),
       ),
