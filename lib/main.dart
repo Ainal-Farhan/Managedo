@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:managedo_mobile_app/screens/LoginScreen/LoginScreenView.dart';
 // import 'package:managedo_mobile_app/test/rest/rest_test.dart';
 
 import './app/dependencies.dart' as dependency;
@@ -15,6 +16,7 @@ void main() {
       title: 'Managedo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
+      home: LoginScreen(),
       initialRoute: router.allScreenRoute,
       onGenerateRoute: router.createRoute,
     ),
