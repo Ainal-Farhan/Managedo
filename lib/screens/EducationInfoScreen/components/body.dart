@@ -120,138 +120,114 @@ class Body extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                        Card(
-                                          color: Colors.white,
-                                          borderOnForeground: true,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          elevation: 10,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              primary: Colors.redAccent,
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.2,
+                                          child: Card(
+                                            color: Colors.redAccent,
+                                            borderOnForeground: true,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            elevation: 10,
+                                            child: IconButton(
+                                              alignment: Alignment.center,
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                              onPressed: () => _showAlert(
+                                                  context,
+                                                  _viewmodel
+                                                      .educations[index].id),
                                             ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                  alignment:
-                                                      Alignment.centerRight,
-                                                  icon: Icon(
-                                                    Icons.delete,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  ),
-                                                  onPressed: () => _showAlert(
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.2,
+                                          child: Card(
+                                            color: Colors.lightGreen,
+                                            borderOnForeground: true,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            elevation: 10,
+                                            child: IconButton(
+                                              alignment: Alignment.center,
+                                              icon: Icon(
+                                                Icons.edit,
+                                                color: Colors.white,
+                                                size: 30,
+                                              ),
+                                              onPressed: () => {},
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.2,
+                                          child: Card(
+                                            color: Colors.blueAccent,
+                                            borderOnForeground: true,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            elevation: 10,
+                                            child: IconButton(
+                                              alignment: Alignment.center,
+                                              icon: Icon(
+                                                Icons.auto_graph_rounded,
+                                                color: Colors.white,
+                                                size: 30,
+                                              ),
+                                              onPressed: () =>
+                                                  Navigator.pushNamed(
                                                       context,
-                                                      _viewmodel
-                                                          .educations[index]
-                                                          .id),
-                                                )
-                                              ],
+                                                      router
+                                                          .performanceGraphRoute,
+                                                      arguments: education.id),
                                             ),
-                                            onPressed: () {},
                                           ),
                                         ),
-                                        Card(
-                                          color: Colors.white,
-                                          borderOnForeground: true,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          elevation: 10,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                primary: Colors.blueAccent),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                  alignment:
-                                                      Alignment.centerRight,
-                                                  icon: Icon(
-                                                    Icons.edit,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  ),
-                                                  onPressed: () => {},
-                                                )
-                                              ],
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.2,
+                                          child: Card(
+                                            color: Colors.blueGrey,
+                                            borderOnForeground: true,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            elevation: 10,
+                                            child: IconButton(
+                                              alignment: Alignment.center,
+                                              icon: Icon(
+                                                Icons.navigate_next_outlined,
+                                                color: Colors.white,
+                                                size: 30,
+                                              ),
+                                              onPressed: () =>
+                                                  Navigator.pushNamed(
+                                                context,
+                                                router.listSemestersRoute,
+                                                arguments:
+                                                    SemesterListViewArguments(
+                                                  educationId: education.id,
+                                                  studentId:
+                                                      education.fkStudentId,
+                                                ),
+                                              ),
                                             ),
-                                            onPressed: () {},
-                                          ),
-                                        ),
-                                        Card(
-                                          color: Colors.white,
-                                          borderOnForeground: true,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          elevation: 10,
-                                          child: ElevatedButton(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                IconButton(
-                                                  alignment: Alignment.center,
-                                                  icon: Icon(
-                                                    Icons.auto_graph_rounded,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  ),
-                                                  onPressed: () =>
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          router
-                                                              .performanceGraphRoute,
-                                                          arguments:
-                                                              education.id),
-                                                )
-                                              ],
-                                            ),
-                                            onPressed: () {},
-                                          ),
-                                        ),
-                                        Card(
-                                          color: Colors.white,
-                                          borderOnForeground: true,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          elevation: 10,
-                                          child: ElevatedButton(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                IconButton(
-                                                  alignment: Alignment.center,
-                                                  icon: Icon(
-                                                    Icons
-                                                        .navigate_next_outlined,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  ),
-                                                  onPressed: () =>
-                                                      Navigator.pushNamed(
-                                                        context,
-                                                        router
-                                                            .listSemestersRoute,
-                                                        arguments:
-                                                            SemesterListViewArguments(
-                                                              educationId: education.id, 
-                                                              studentId: education.fkStudentId,
-                                                            ),
-                                                      ),
-                                                )
-                                              ],
-                                            ),
-                                            onPressed: () {},
                                           ),
                                         ),
                                       ],
@@ -288,9 +264,8 @@ class Body extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: Text("YES"),
-              onPressed: () => _state.deleteSelectedEducation(
-                educationId: educationId
-              ),
+              onPressed: () =>
+                  _state.deleteSelectedEducation(educationId: educationId),
             ),
             TextButton(
               child: Text("NO"),
