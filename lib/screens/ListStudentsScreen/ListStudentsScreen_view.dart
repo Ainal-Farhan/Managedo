@@ -7,8 +7,12 @@ import '../view.dart';
 import './ListStudents_viewmodel.dart';
 
 class ListStudentsScreen extends StatefulWidget {
-  static Route<dynamic> route() =>
-      MaterialPageRoute(builder: (_) => ListStudentsScreen());
+  final int parentId;
+
+  ListStudentsScreen({@required this.parentId});
+
+  static Route<dynamic> route({@required parentId}) =>
+      MaterialPageRoute(builder: (_) => ListStudentsScreen(parentId: parentId));
 
   @override
   ListStudentsState createState() => ListStudentsState();
@@ -46,9 +50,10 @@ class ListStudentsView extends StatelessWidget {
         child: Scaffold(
           appBar: Bar(),
           body: View<ListStudentsViewmodel>(
-            initViewmodel: (viewmodel) => viewmodel,
+            initViewmodel: (viewmodel) =>
+                viewmodel.init(parentId: _state.widget.parentId),
             builder: (context, viewmodel, _) {
-              return Body();
+              return Body(viewmodel: viewmodel);
             },
           ),
           bottomNavigationBar: FancyBottomNavigation(

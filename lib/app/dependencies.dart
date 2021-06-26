@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:managedo_mobile_app/screens/AllEducationsPerformanceScreen/AllEducationsPerformance_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/EducationInfoScreen/EducationInfo_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/ExampleScreen/Example_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/ListStudentsScreen/ListStudents_viewmodel.dart';
@@ -11,6 +12,8 @@ import 'package:managedo_mobile_app/services/education/education_service.dart';
 import 'package:managedo_mobile_app/services/education/education_service_rest.dart';
 import 'package:managedo_mobile_app/services/semester/semester_service.dart';
 import 'package:managedo_mobile_app/services/semester/semester_service_rest.dart';
+import 'package:managedo_mobile_app/services/studentRelation/studentRelation_service.dart';
+import 'package:managedo_mobile_app/services/studentRelation/studentRelation_service_rest.dart';
 import 'package:managedo_mobile_app/services/user/user_service.dart';
 import 'package:managedo_mobile_app/services/user/user_service_rest.dart';
 
@@ -30,6 +33,8 @@ void init() {
   dependency
       .registerLazySingleton<SemesterService>(() => SemesterServiceRest());
   dependency.registerLazySingleton<CourseService>(() => CourseServiceRest());
+  dependency.registerLazySingleton<StudentRelationService>(
+      () => StudentRelationServiceRest());
 
   // Viewmodels
   dependency.registerLazySingleton(() => EducationInfoViewmodel());
@@ -38,4 +43,5 @@ void init() {
   dependency.registerLazySingleton(() => SemesterListViewmodel());
   dependency.registerLazySingleton(() => StudentPerformanceGraphViewmodel());
   dependency.registerLazySingleton(() => SemesterDetailsViewmodel());
+  dependency.registerLazySingleton(() => AllEducationsPerformanceViewmodel());
 }

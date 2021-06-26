@@ -31,7 +31,7 @@ class AllScreen extends StatelessWidget {
                   trailing: IconButton(
                     icon: Icon(Icons.keyboard_arrow_right),
                     onPressed: () async =>
-                        await Navigator.pushNamed(context, listStudentsRoute),
+                        await Navigator.pushNamed(context, listStudentsRoute, arguments: 1),
                   ),
                 ),
                 ListTile(
