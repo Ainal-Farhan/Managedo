@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:managedo_mobile_app/LoadingScreen/LoadingScreen.dart';
 import 'package:managedo_mobile_app/LoadingScreen/LoadingScreenArguments.dart';
+import 'package:managedo_mobile_app/screens/AllEducationsPerformanceScreen/AllEducationsPerformance_view.dart';
 
 import 'package:managedo_mobile_app/screens/EducationInfoScreen/EducationInfo_view.dart';
 import 'package:managedo_mobile_app/screens/ExampleScreen/Example_view.dart';
@@ -18,6 +19,7 @@ const String semesterDetailsRoute = '/semesterDetails';
 const String exampleRoute = '/example';
 const String allScreenRoute = '/allScreen';
 const String loadingScreenRoute = '/loading';
+const String allEducationPerformanceRoute = '/allEducationsPerformance';
 
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
@@ -26,7 +28,7 @@ Route<dynamic> createRoute(settings) {
     case exampleRoute:
       return ExampleView.route();
     case listStudentsRoute:
-      return ListStudentsScreen.route();
+      return ListStudentsScreen.route(parentId: settings.arguments);
     case listSemestersRoute:
       final args = settings.arguments;
       return SemesterListView.route(
@@ -41,19 +43,22 @@ Route<dynamic> createRoute(settings) {
           studentId: args.studentId);
     case allScreenRoute:
       return AllScreen.route();
+    case allEducationPerformanceRoute:
+      return AllEducationsPerformance.route(fkStudentId: settings.arguments);
     case loadingScreenRoute:
       final LoadingScreenArguments args = settings.arguments;
-      return MaterialPageRoute(builder: (_) => LoadingScreen(
-        processes: args.processes,
-        nextScreenRoute: args.nextScreenRoute,
-        nextScreenArguments: args.nextScreenArguments,
-        backgroundColor: args.backgroundColor,
-        image: args.image,
-        initialMessage: args.image,
-        loaderColor: args.loaderColor,
-        styleTextUnderTheLoader: args.styleTextUnderTheLoader,
-        title: args.title,
-      ));
+      return MaterialPageRoute(
+          builder: (_) => LoadingScreen(
+                processes: args.processes,
+                nextScreenRoute: args.nextScreenRoute,
+                nextScreenArguments: args.nextScreenArguments,
+                backgroundColor: args.backgroundColor,
+                image: args.image,
+                initialMessage: args.image,
+                loaderColor: args.loaderColor,
+                styleTextUnderTheLoader: args.styleTextUnderTheLoader,
+                title: args.title,
+              ));
   }
   return null;
 }

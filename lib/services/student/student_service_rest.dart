@@ -9,9 +9,10 @@ class StudentServiceRest implements StudentService {
   @override
   Future<Student> getStudent(int id) async {
     final studentJson = await rest.get('students/$id');
-    final listJsonUser =
-        await rest.get('users?userTypeId=$id&userType=student');
+    final listJsonUser = await rest.get('users/fkStudentId/$id');
 
-    return Student.fromJson(studentJson, listJsonUser[0]);
+    return studentJson != null || listJsonUser != null
+        ? Student.fromJson(studentJson, listJsonUser[0])
+        : null;
   }
 }
