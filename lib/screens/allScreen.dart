@@ -22,16 +22,18 @@ class AllScreen extends StatelessWidget {
                   title: Text('Education List (rest required)'),
                   trailing: IconButton(
                     icon: Icon(Icons.keyboard_arrow_right),
-                    onPressed: () async =>
-                        await Navigator.pushNamed(context, educationRoute, arguments: 1),
+                    onPressed: () async => await Navigator.pushNamed(
+                        context, educationRoute,
+                        arguments: 1),
                   ),
                 ),
                 ListTile(
                   title: Text('student List'),
                   trailing: IconButton(
                     icon: Icon(Icons.keyboard_arrow_right),
-                    onPressed: () async =>
-                        await Navigator.pushNamed(context, listStudentsRoute, arguments: 1),
+                    onPressed: () async => await Navigator.pushNamed(
+                        context, listStudentsRoute,
+                        arguments: 1),
                   ),
                 ),
                 ListTile(
@@ -40,6 +42,14 @@ class AllScreen extends StatelessWidget {
                     icon: Icon(Icons.keyboard_arrow_right),
                     onPressed: () async =>
                         await Navigator.pushNamed(context, exampleRoute),
+                  ),
+                ),
+                ListTile(
+                  title: Text('Log Out'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.keyboard_arrow_left),
+                    onPressed: () async =>
+                        await Navigator.pushNamed(context, loginScreenRoute),
                   ),
                 ),
               ],
