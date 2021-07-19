@@ -12,6 +12,8 @@ import 'package:managedo_mobile_app/services/course/course_service.dart';
 import 'package:managedo_mobile_app/services/course/course_service_rest.dart';
 import 'package:managedo_mobile_app/services/education/education_service.dart';
 import 'package:managedo_mobile_app/services/education/education_service_rest.dart';
+import 'package:managedo_mobile_app/services/login/login_service.dart';
+import 'package:managedo_mobile_app/services/login/login_service_rest.dart';
 import 'package:managedo_mobile_app/services/semester/semester_service.dart';
 import 'package:managedo_mobile_app/services/semester/semester_service_rest.dart';
 import 'package:managedo_mobile_app/services/studentRelation/studentRelation_service.dart';
@@ -37,6 +39,7 @@ void init() {
   dependency.registerLazySingleton<CourseService>(() => CourseServiceRest());
   dependency.registerLazySingleton<StudentRelationService>(
       () => StudentRelationServiceRest());
+  dependency.registerLazySingleton<LoginService>(() => LoginServiceRest());
 
   // Viewmodels
   dependency.registerLazySingleton(() => EducationInfoViewmodel());
