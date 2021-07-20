@@ -11,7 +11,11 @@ class RestService {
 
   // get request
   Future get(String endpoint) async {
-    final response = await http.get(Uri.parse('$baseUrl/$endpoint',),);
+    final response = await http.get(
+      Uri.parse(
+        '$baseUrl/$endpoint',
+      ),
+    );
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -22,7 +26,9 @@ class RestService {
   // post request
   Future post(String endpoint, {dynamic data}) async {
     final response = await http.post(
-        Uri.parse('$baseUrl/$endpoint',),
+        Uri.parse(
+          '$baseUrl/$endpoint',
+        ),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(data));
 
@@ -35,7 +41,9 @@ class RestService {
   // patch request
   Future patch(String endpoint, {dynamic data}) async {
     final response = await http.patch(
-        Uri.parse('$baseUrl/$endpoint',),
+        Uri.parse(
+          '$baseUrl/$endpoint',
+        ),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(data));
 
@@ -48,7 +56,9 @@ class RestService {
   // put request
   Future put(String endpoint, {dynamic data}) async {
     final response = await http.put(
-        Uri.parse('$baseUrl/$endpoint',),
+        Uri.parse(
+          '$baseUrl/$endpoint',
+        ),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(data));
 
@@ -61,7 +71,9 @@ class RestService {
   // delete request
   Future delete(String endpoint) async {
     final response = await http.delete(
-      Uri.parse('$baseUrl/$endpoint',),
+      Uri.parse(
+        '$baseUrl/$endpoint',
+      ),
     );
 
     if (response.statusCode == 200) {

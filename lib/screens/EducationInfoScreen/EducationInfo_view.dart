@@ -67,6 +67,35 @@ class EducationInfoState extends State<EducationInfo> {
             leading: Icon(Icons.menu_book_rounded),
             title: Text('Education Information'),
             centerTitle: true,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Logout"),
+                          content: Text("You want to Logout?"),
+                          actions: [
+                            TextButton(
+                              child: Text("OK"),
+                              onPressed: () =>
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      router.loginScreenRoute,
+                                      (route) => false),
+                            ),
+                            TextButton(
+                              child: Text("CANCEL"),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  icon: Icon(Icons.login_rounded))
+            ],
           ),
           body: View<EducationInfoViewmodel>(
             initViewmodel: (viewmodel) =>
@@ -102,13 +131,9 @@ class EducationInfoState extends State<EducationInfo> {
             onTabChangedListener: (int position) {
               switch (position) {
                 case 0:
-                  return Navigator.of(context).pushReplacementNamed(
-                    ''
-                  );
+                  return Navigator.of(context).pushReplacementNamed('');
                 case 1:
-                  return Navigator.of(context).pushReplacementNamed(
-                    ''
-                  );
+                  return Navigator.of(context).pushReplacementNamed('');
               }
             },
           ),

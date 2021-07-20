@@ -4,43 +4,22 @@ import '../rest_service.dart';
 import './login_service.dart';
 
 class LoginServiceRest implements LoginService {
-  static const baseEndpoint = "login";
+  static const baseEndpoint = "loginCredentials";
 
   final rest = dependency<RestService>();
 
   @override
-  Future<LoginCredential> getLoginId(int id) async {
-    final idJson = await rest.get('id/$id');
+  Future<List<LoginCredential>> getAllLoginCredentials() async {
+    final listJson =
+        await rest.get(baseEndpoint).then((data) => data).catchError((onError) {
+      print(onError.toString());
+      return null;
+    });
 
-    return LoginCredential.fromJson(idJson);
-  }
+    if (listJson == null) return null;
 
-  @override
-  Future<LoginCredential> getLoginUsername(String username) async {
-    final usernameJson = await rest.get('username/$username');
-
-    return LoginCredential.fromJson(usernameJson);
-  }
-
-  @override
-  Future<LoginCredential> getLoginPassword(String password) async {
-    final passwordJson = await rest.get('password/$password');
-
-    return LoginCredential.fromJson(passwordJson);
-  }
-
-  @override
-  Future<Map<String, dynamic>> getLoginIdInJson(int id) async {
-    return await rest.get('students/$id');
-  }
-
-  @override
-  Future<Map<String, dynamic>> getLoginUsernameInJson(String username) async {
-    return await rest.get('username/$username');
-  }
-
-  @override
-  Future<Map<String, dynamic>> getLoginPasswordInJson(String password) async {
-    return await rest.get('password/$password');
+    return (listJson as List)
+        .map((json) => LoginCredential.fromJson(json))
+        .toList();
   }
 }

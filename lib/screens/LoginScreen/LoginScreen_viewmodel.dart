@@ -7,8 +7,32 @@ import '../../app/dependencies.dart';
 import '../viewmodel.dart';
 
 class LoginScreenViewmodel extends Viewmodel {
-  List<LoginCredential> login;
-  static LoginService get getLoginId => dependency();
-  static LoginService get getLoginUsername => dependency();
-  static LoginService get getLoginPassword => dependency();
+  LoginService get loginService => dependency();
+
+  void init() {
+    turnBusy();
+    turnIdle();
+  }
+
+  Future<LoginCredential> validate({String username, String password}) async {
+    print('username: $username');
+    print('password: $password');
+
+    if (username == '' || password == '') return null;
+
+    return await loginService.getAllLoginCredentials().then((loginList) {
+      if (loginList == null) return null;
+
+      for (int i = 0; i < loginList.length; i++) {
+        print(loginList[i].username);
+        print(loginList[i].password);
+
+        if (loginList[i].username == username &&
+            loginList[i].password == password) {
+          return loginList[i];
+        }
+      }
+      return null;
+    });
+  }
 }

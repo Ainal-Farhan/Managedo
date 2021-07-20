@@ -6,7 +6,7 @@ import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view
 class Float extends StatelessWidget {
   final SemesterDetailsState _state;
 
-  Float({@required state}): _state = state;
+  Float({@required state}) : _state = state;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +54,7 @@ class Float extends StatelessWidget {
             ),
             shape: BoxShape.circle,
           ),
+          //? Add New Course Button
           child: FloatingActionButton(
             backgroundColor: Color.fromRGBO(0, 0, 0, 0),
             onPressed: () {},
