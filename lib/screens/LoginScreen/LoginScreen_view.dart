@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:managedo_mobile_app/app/router.dart';
-import 'package:managedo_mobile_app/models/login_credential.dart';
+import 'package:managedo_mobile_app/models/user.dart';
 
 import 'components/bar.dart';
 import '../view.dart';
@@ -81,16 +81,26 @@ class LoginState extends State<LoginScreen> {
                           //color: Colors.blue,
                           child: Text('Login'),
                           onPressed: () async {
-                            final LoginCredential loginCredential =
-                                await viewmodel.validate(
+                            final User loggedUser = await viewmodel.validate(
                               username: usernameController.text,
                               password: passwordController.text,
                             );
 
-                            if (loginCredential != null) {
-                              await Navigator.pushReplacementNamed(
-                                  context, educationRoute,
-                                  arguments: loginCredential.fkUserId);
+                            if (loggedUser != null) {
+                              print(loggedUser.userType);
+                              if (loggedUser.userType == 'student') {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  educationRoute,
+                                  arguments: loggedUser.fkStudentId,
+                                );
+                              } else if (loggedUser.userType == 'parent') {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  listStudentsRoute,
+                                  arguments: loggedUser.fkParentId,
+                                );
+                              }
                             } else {
                               usernameController.text = '';
                               passwordController.text = '';

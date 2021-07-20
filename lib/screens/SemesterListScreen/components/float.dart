@@ -5,7 +5,7 @@ import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view
 class Float extends StatelessWidget {
   final SemesterListView _state;
 
-  const Float({@required state}): _state = state;
+  const Float({@required state}) : _state = state;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +21,18 @@ class Float extends StatelessWidget {
             foregroundColor: Colors.black,
             elevation: 10.0,
             onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(
-              router.educationRoute, 
-              (route) => false, 
-              arguments:  _state.studentId,
-              ),
+              router.educationRoute,
+              (route) => false,
+              arguments: _state.studentId,
+            ),
             heroTag: null,
           ),
         ),
         FloatingActionButton(
           child: IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => {},
+            onPressed: () =>
+                Navigator.pushNamed(context, router.addSemesterRoute),
             color: Colors.black,
           ),
           backgroundColor: Colors.white,

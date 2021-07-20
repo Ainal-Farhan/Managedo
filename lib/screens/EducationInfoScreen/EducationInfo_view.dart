@@ -23,7 +23,8 @@ class EducationInfo extends StatefulWidget {
 }
 
 class EducationInfoState extends State<EducationInfo> {
-  int currentPage = 2;
+  int currentPage = 1;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> deleteSelectedEducation({@required int educationId}) {
     final load = LoadingScreen(
@@ -63,6 +64,7 @@ class EducationInfoState extends State<EducationInfo> {
       onWillPop: () => Future.value(true),
       child: SafeArea(
         child: Scaffold(
+          key: _scaffoldKey,
           appBar: AppBar(
             leading: Icon(Icons.menu_book_rounded),
             title: Text('Education Information'),
@@ -108,17 +110,17 @@ class EducationInfoState extends State<EducationInfo> {
             padding: const EdgeInsets.only(bottom: 30.0),
             child: FloatingActionButton(
               child: Icon(Icons.add),
-              onPressed: () => {},
+              onPressed: () => Navigator.pushNamed(
+                context,
+                router.addEducationScreenRoute,
+                arguments: widget.studentId,
+              ),
             ),
           ),
           bottomNavigationBar: FancyBottomNavigation(
             circleColor: Colors.green,
             initialSelection: currentPage,
             tabs: [
-              TabData(
-                iconData: Icons.person,
-                title: 'Profile',
-              ),
               TabData(
                 iconData: Icons.home,
                 title: 'Home',
@@ -131,9 +133,9 @@ class EducationInfoState extends State<EducationInfo> {
             onTabChangedListener: (int position) {
               switch (position) {
                 case 0:
-                  return Navigator.of(context).pushReplacementNamed('');
-                case 1:
-                  return Navigator.of(context).pushReplacementNamed('');
+                  return Navigator.of(context).pushReplacementNamed(
+                      router.studentHomeRoute,
+                      arguments: widget.studentId);
               }
             },
           ),

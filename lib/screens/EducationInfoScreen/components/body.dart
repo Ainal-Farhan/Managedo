@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:managedo_mobile_app/app/router.dart' as router;
+import 'package:managedo_mobile_app/models/education.dart';
 import 'package:managedo_mobile_app/screens/EducationInfoScreen/EducationInfo_view.dart';
 import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 
@@ -165,7 +166,14 @@ class Body extends StatelessWidget {
                                                 color: Colors.white,
                                                 size: 30,
                                               ),
-                                              onPressed: () => {},
+                                              onPressed: () =>
+                                                  Navigator.pushNamed(
+                                                context,
+                                                router.editEducationScreenRoute,
+                                                arguments: Education.copy(
+                                                  _viewmodel.educations[index],
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),

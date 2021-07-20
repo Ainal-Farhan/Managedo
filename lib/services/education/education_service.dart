@@ -5,4 +5,6 @@ abstract class EducationService {
   Future<List<Education>> getEducationListBasedOnStudentId(int studentId);
   Future<List<Education>> getEducationList();
   Future<bool> deleteSelectedEducation(int educationId);
+  Future<bool> adddNewEducation(Education education);
+  Future<bool> updateEducation(Education education);
 }

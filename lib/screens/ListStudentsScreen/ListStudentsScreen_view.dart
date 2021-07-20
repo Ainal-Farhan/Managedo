@@ -5,6 +5,7 @@ import './components/body.dart';
 import './components/bar.dart';
 import '../view.dart';
 import './ListStudents_viewmodel.dart';
+import '../../app/router.dart' as router;
 
 class ListStudentsScreen extends StatefulWidget {
   final int parentId;
@@ -19,7 +20,7 @@ class ListStudentsScreen extends StatefulWidget {
 }
 
 class ListStudentsState extends State<ListStudentsScreen> {
-  int _currentPage = 2;
+  int _currentPage = 1;
 
   int get currentPage => _currentPage;
   set currentPage(int currentPage) => this._currentPage = currentPage;
@@ -41,6 +42,7 @@ class ListStudentsState extends State<ListStudentsScreen> {
 class ListStudentsView extends StatelessWidget {
   final ListStudentsState _state;
   ListStudentsView({state}) : _state = state;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class ListStudentsView extends StatelessWidget {
       onWillPop: () => Future.value(true),
       child: SafeArea(
         child: Scaffold(
+          key: _scaffoldKey,
           appBar: Bar(),
           body: View<ListStudentsViewmodel>(
             initViewmodel: (viewmodel) =>
@@ -57,25 +60,26 @@ class ListStudentsView extends StatelessWidget {
             },
           ),
           bottomNavigationBar: FancyBottomNavigation(
-            circleColor: Colors.green,
-            initialSelection: _state.currentPage,
-            tabs: [
-              TabData(
-                iconData: Icons.person,
-                title: 'Profile',
-              ),
-              TabData(
-                iconData: Icons.home,
-                title: 'Home',
-              ),
-              TabData(
-                iconData: Icons.school_sharp,
-                title: 'Students',
-              ),
-            ],
-            onTabChangedListener: (int position) =>
-                _state.setCurrentPage(position),
-          ),
+              circleColor: Colors.green,
+              initialSelection: _state.currentPage,
+              tabs: [
+                TabData(
+                  iconData: Icons.home,
+                  title: 'Home',
+                ),
+                TabData(
+                  iconData: Icons.school_sharp,
+                  title: 'Students',
+                ),
+              ],
+              onTabChangedListener: (int position) {
+                switch (position) {
+                  case 0:
+                    return Navigator.of(context).pushReplacementNamed(
+                        router.parentHomeRoute,
+                        arguments: _state.widget.parentId);
+                }
+              }),
         ),
       ),
     );

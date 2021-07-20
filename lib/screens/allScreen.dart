@@ -37,14 +37,6 @@ class AllScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text('Example'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.keyboard_arrow_right),
-                    onPressed: () async =>
-                        await Navigator.pushNamed(context, exampleRoute),
-                  ),
-                ),
-                ListTile(
                   title: Text('Log Out'),
                   trailing: IconButton(
                     icon: Icon(Icons.keyboard_arrow_left),

@@ -43,4 +43,20 @@ class EducationServiceRest implements EducationService {
 
     return isDeleted;
   }
+
+  @override
+  Future<bool> adddNewEducation(Education education) async {
+    return await rest
+        .post('$baseEndpoint', data: education.toJson())
+        .then((value) => true)
+        .catchError((onError) => false);
+  }
+
+  @override
+  Future<bool> updateEducation(Education education) async {
+    return await rest
+        .put('$baseEndpoint/${education.id}', data: education.toJson())
+        .then((value) => true)
+        .catchError((onError) => false);
+  }
 }

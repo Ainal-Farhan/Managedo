@@ -44,13 +44,13 @@ class Education {
         );
 
   Map<String, dynamic> toJson() => {
-    'id': this.id,
-    'universityName': this.universityName,
-    'field': this.field,
-    'degreeLevel': this.degreeLevel,
-    'startDate': this.startDate,
-    'targetedCGPA': this.targetedCGPA,
-    'achievedCGPA': this.achievedCGPA,
-    'fkStudentId': this.fkStudentId,
-  };
+        'id': this.id,
+        'universityName': this.universityName,
+        'field': this.field,
+        'degreeLevel': this.degreeLevel,
+        'startDate': this.startDate.toIso8601String(),
+        'targetedCGPA': this.targetedCGPA,
+        'achievedCGPA': this.achievedCGPA,
+        'fkStudentId': this.fkStudentId,
+      };
 }

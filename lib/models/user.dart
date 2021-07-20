@@ -30,11 +30,13 @@ class User {
           profilePicURL: json['profilePicURL'],
           phoneNo: json['phoneNo'],
           gender: json['gender'],
-          birthDate: DateTime.parse(json['birthDate']),
+          birthDate: json['birthDate'] == null
+              ? DateTime.now()
+              : DateTime.parse(json['birthDate']),
           email: json['email'],
           userType: json['userType'],
-          fkStudentId: json['fkStudentId'],
-          fkParentId: json['fkParentId'],
+          fkStudentId: json['fkStudentId'] == null ? null : json['fkStudentId'],
+          fkParentId: json['fkParentId'] == null ? null : json['fkParentId'],
         );
 
   User.copy(User from)
@@ -52,15 +54,15 @@ class User {
         );
 
   Map<String, dynamic> toJson() => {
-    'id': this.id,
-    'name': this.name,
-    'profilePicURL': this.profilePicURL,
-    'phoneNo': this.phoneNo,
-    'gender': this.gender,
-    'birthDate': this.birthDate,
-    'email': this.email,
-    'userType': this.userType,
-    'fkStudentId': this.fkStudentId,
-    'fkParentId': this.fkParentId,
-  };
+        'id': this.id,
+        'name': this.name,
+        'profilePicURL': this.profilePicURL,
+        'phoneNo': this.phoneNo,
+        'gender': this.gender,
+        'birthDate': this.birthDate,
+        'email': this.email,
+        'userType': this.userType,
+        'fkStudentId': this.fkStudentId,
+        'fkParentId': this.fkParentId,
+      };
 }
