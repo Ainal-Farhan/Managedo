@@ -40,6 +40,8 @@ class LoginScreenViewmodel extends Viewmodel {
       return null;
     });
 
+    if (loginCredential == null) return null;
+
     return await userService.getUser(loginCredential.fkUserId);
   }
 }

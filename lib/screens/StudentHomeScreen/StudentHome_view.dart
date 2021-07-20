@@ -30,8 +30,20 @@ class StudentHomeScreen extends StatelessWidget {
           body: View<StudentHomeViewmodel>(
             initViewmodel: (viewmodel) => viewmodel,
             builder: (context, viewmodel, _) {
-              return Card(
-                child: Text('Home Screen'),
+              return Container(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.home),
+                    Text(
+                      'Home Screen',
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           ),

@@ -15,4 +15,18 @@ class UserServiceRest implements UserService {
   Future<Map<String, dynamic>> getUserInJson(int id) async {
     return await rest.get('users/$id');
   }
+
+  @override
+  Future<User> getUserBasedOnFkParentId(int id) async {
+    return await rest
+        .get('users/fkParentId/$id')
+        .then((json) => User.fromJson(json));
+  }
+
+  @override
+  Future<User> getUserBasedOnFkStudentId(int id) async {
+    return await rest
+        .get('users/fkStudentId/$id')
+        .then((json) => User.fromJson(json));
+  }
 }
