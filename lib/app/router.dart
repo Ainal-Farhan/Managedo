@@ -10,6 +10,7 @@ import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetail
 import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_view.dart';
 import 'package:managedo_mobile_app/screens/StudentPerformanceScreen/StudentPerformanceGraph_view.dart';
 import 'package:managedo_mobile_app/screens/LoginScreen/LoginScreen_view.dart';
+import 'package:managedo_mobile_app/screens/AddCourseScreen/AddCourseScreen_view.dart';
 import 'package:managedo_mobile_app/screens/allScreen.dart';
 
 const String educationRoute = '/education';
@@ -22,6 +23,7 @@ const String allScreenRoute = '/allScreen';
 const String loadingScreenRoute = '/loading';
 const String allEducationPerformanceRoute = '/allEducationsPerformance';
 const String loginScreenRoute = '/loginScreenRoute';
+const String addCourseScreenRoute = '/addCourseScreenRoute';
 
 Route<dynamic> createRoute(settings) {
   switch (settings.name) {
@@ -49,6 +51,8 @@ Route<dynamic> createRoute(settings) {
       return AllScreen.route();
     case allEducationPerformanceRoute:
       return AllEducationsPerformance.route(fkStudentId: settings.arguments);
+    case addCourseScreenRoute:
+      return AddCourseScreen.route();
     case loadingScreenRoute:
       final LoadingScreenArguments args = settings.arguments;
       return MaterialPageRoute(

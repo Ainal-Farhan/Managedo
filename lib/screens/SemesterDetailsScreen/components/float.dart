@@ -57,7 +57,8 @@ class Float extends StatelessWidget {
           //? Add New Course Button
           child: FloatingActionButton(
             backgroundColor: Color.fromRGBO(0, 0, 0, 0),
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.pushNamed(context, router.addCourseScreenRoute),
             isExtended: true,
             child: Icon(
               Icons.add,

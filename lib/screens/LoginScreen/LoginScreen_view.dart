@@ -86,7 +86,6 @@ class LoginState extends State<LoginScreen> {
                               username: usernameController.text,
                               password: passwordController.text,
                             );
-
                             if (loginCredential != null) {
                               await Navigator.pushReplacementNamed(
                                   context, educationRoute,

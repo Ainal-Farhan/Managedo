@@ -7,6 +7,7 @@ import 'package:managedo_mobile_app/screens/SemesterDetailsScreen/SemesterDetail
 import 'package:managedo_mobile_app/screens/SemesterListScreen/SemesterList_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/StudentPerformanceScreen/StudentPerformanceGraph_viewmodel.dart';
 import 'package:managedo_mobile_app/screens/LoginScreen/LoginScreen_viewmodel.dart';
+import 'package:managedo_mobile_app/screens/AddCourseScreen/AddCourseScreen_viewmodel.dart';
 
 import 'package:managedo_mobile_app/services/course/course_service.dart';
 import 'package:managedo_mobile_app/services/course/course_service_rest.dart';
@@ -50,4 +51,5 @@ void init() {
   dependency.registerLazySingleton(() => SemesterDetailsViewmodel());
   dependency.registerLazySingleton(() => AllEducationsPerformanceViewmodel());
   dependency.registerLazySingleton(() => LoginScreenViewmodel());
+  dependency.registerLazySingleton(() => AddCourseScreenViewmodel());
 }
